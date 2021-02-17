@@ -12,21 +12,25 @@ struct SignInView: View {
     var body: some View {
         ZStack {
             GeometryReader { gr in
-            //background stack
-                VStack {
-                    Image("signInbg")
-                        .resizable()
-                        .frame(width: 360, height: 360, alignment: .center)
-                        .offset(y:60)
+                
+                Image("signInbg")
+                    .resizable()
+                    .frame(width: gr.size.width*0.9,height: 360, alignment: .center)
+                    .cornerRadius(20)
+                
+                ZStack {
                     RoundedRectangle(cornerRadius: 40)
                         .fill(Color(red: 238/255, green: 238/255, blue: 238/255))
                         .frame(height: gr.size.height*0.7)
-                        .offset(y: 80)
-                            
+                        .offset(y:300)
+                    
+                    SignInPanel()
                 }
-            }
                 
-                //sign in stack
+                
+                
+            }
+            
                 
         }
     }
@@ -37,3 +41,4 @@ struct SignInView_Previews: PreviewProvider {
         SignInView()
     }
 }
+
