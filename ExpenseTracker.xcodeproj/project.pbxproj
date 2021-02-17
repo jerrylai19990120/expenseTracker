@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9203506725DD92280050563E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203506625DD92280050563E /* HomeView.swift */; };
+		9203506B25DD9F0E0050563E /* ExpenseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203506A25DD9F0E0050563E /* ExpenseItem.swift */; };
 		922570C825D98A6C00367D6C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922570C725D98A6C00367D6C /* SignInView.swift */; };
 		92DC9A3925D86C0200DB4246 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DC9A3825D86C0200DB4246 /* AppDelegate.swift */; };
 		92DC9A3B25D86C0200DB4246 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DC9A3A25D86C0200DB4246 /* SceneDelegate.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		9203506625DD92280050563E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		9203506A25DD9F0E0050563E /* ExpenseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseItem.swift; sourceTree = "<group>"; };
 		922570C725D98A6C00367D6C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		92DC9A3525D86C0200DB4246 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DC9A3825D86C0200DB4246 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				92DC9A3C25D86C0200DB4246 /* WelcomeView.swift */,
 				922570C725D98A6C00367D6C /* SignInView.swift */,
 				9203506625DD92280050563E /* HomeView.swift */,
+				9203506A25DD9F0E0050563E /* ExpenseItem.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92DC9A3925D86C0200DB4246 /* AppDelegate.swift in Sources */,
+				9203506B25DD9F0E0050563E /* ExpenseItem.swift in Sources */,
 				92DC9A3B25D86C0200DB4246 /* SceneDelegate.swift in Sources */,
 				922570C825D98A6C00367D6C /* SignInView.swift in Sources */,
 				9203506725DD92280050563E /* HomeView.swift in Sources */,
