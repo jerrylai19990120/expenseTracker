@@ -44,7 +44,8 @@ struct ExpenseItem: View {
             
         }.padding(.all, 20)
             .background(Color.white)
-            .cornerRadius(16)
+            .cornerRadius(16).shadow(color: .gray, radius: 4)
+        
     }
 }
 

@@ -10,9 +10,25 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
+        
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color("bgPurple"), .purple]), startPoint: .topLeading, endPoint: .bottomTrailing)
             
+            VStack {
+                
+                MainStatusView()
+                
+                Rectangle().fill(Color.white)
+            }
+            
+            VStack {
+                ExpenseItem()
+                ExpenseItem()
+                ExpenseItem()
+                ExpenseItem()
+                ExpenseItem()
+
+            }.offset(y: 116)
             
             
         }.edgesIgnoringSafeArea(.all)
@@ -24,4 +40,5 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
     }
 }
+
 
