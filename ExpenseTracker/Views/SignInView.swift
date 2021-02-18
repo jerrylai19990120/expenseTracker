@@ -13,18 +13,19 @@ struct SignInView: View {
         ZStack {
             GeometryReader { gr in
                 
-                Image("signInbg")
+                Image("signIn")
                     .resizable()
-                    .frame(width: gr.size.width*0.9,height: 360, alignment: .center)
-                    .cornerRadius(20)
+                    .frame(width: gr.size.width, height: 460, alignment: .center)
+                    .offset(y: -60)
+                    //.cornerRadius(20)
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 40)
                         .fill(Color(red: 238/255, green: 238/255, blue: 238/255))
                         .frame(height: gr.size.height*0.7)
-                        .offset(y:300)
+                        .offset(y:280)
                     
-                    SignInPanel()
+                    SignInPanel().offset(y: 280)
                 }
                 
                 

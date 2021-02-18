@@ -67,6 +67,7 @@ struct MainStatusView: View {
                 
             }
         }.padding([.top, .bottom], 70)
+            
     }
 }
 

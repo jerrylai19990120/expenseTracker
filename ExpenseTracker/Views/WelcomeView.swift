@@ -40,7 +40,8 @@ struct WelcomeView: View {
                                 .padding(EdgeInsets(top:18, leading: 136, bottom: 18, trailing: 128))
                                 .background(Color(red: 149/255, green: 80/255, blue: 230/255))
                                 .cornerRadius(10)
-                        }.navigationBarTitle("")
+                        }
+                        
                         
                         
                     }
