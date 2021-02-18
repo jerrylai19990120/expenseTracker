@@ -34,7 +34,8 @@ struct WelcomeView: View {
                     
                         
                     Button(action: {}) {
-                        NavigationLink(destination: SignInView()) {
+                        NavigationLink(destination: SignInView().navigationBarTitle("")
+                        .navigationBarHidden(true)) {
                             Text("SIGN IN")
                                 .foregroundColor(.white)
                                 .padding(EdgeInsets(top:18, leading: 136, bottom: 18, trailing: 128))
@@ -50,7 +51,8 @@ struct WelcomeView: View {
                     
                     Button(action: {}) {
                         
-                        NavigationLink(destination: SignUpView()) {
+                        NavigationLink(destination: SignUpView().navigationBarTitle("")
+                        .navigationBarHidden(true)) {
                             Text(/*@START_MENU_TOKEN@*/"SIGN UP"/*@END_MENU_TOKEN@*/)
                                 .foregroundColor(Color(red: 149/255, green: 80/255, blue: 230/255))
                                 .padding(EdgeInsets(top: 16, leading: 128, bottom: 16, trailing: 128))

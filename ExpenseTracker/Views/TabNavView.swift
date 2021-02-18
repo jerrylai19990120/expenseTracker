@@ -20,7 +20,8 @@ struct TabNavView: View {
                         Image(systemName: "house")
                         Text("HOME")
                     }
-                }
+                }.navigationBarTitle("")
+                .navigationBarHidden(true)
             
             HistoryView()
                 .tabItem {
@@ -28,18 +29,9 @@ struct TabNavView: View {
                         Image(systemName: "clock")
                         Text("HISTORY")
                     }
-            }
+            }.navigationBarTitle("")
+            .navigationBarHidden(true)
             
-            AddActivityView()
-                .tabItem {
-                    VStack {
-                        Image(systemName: "plus")
-                            .resizable()
-                            .clipped()
-                            .aspectRatio(contentMode: .fit)
-                        
-                    }
-            }
             
             ChartsView()
                 .tabItem{
@@ -47,7 +39,8 @@ struct TabNavView: View {
                         Image(systemName: "chart.pie")
                         Text("CHARTS")
                     }
-            }
+            }.navigationBarTitle("")
+            .navigationBarHidden(true)
             
             ProfileView()
                 .tabItem {
@@ -55,7 +48,8 @@ struct TabNavView: View {
                         Image(systemName: "person")
                         Text("PROFILE")
                     }
-            }
+            }.navigationBarTitle("")
+            .navigationBarHidden(true)
             
             
         }.onAppear(){

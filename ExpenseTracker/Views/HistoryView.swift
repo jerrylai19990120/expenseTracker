@@ -10,7 +10,40 @@ import SwiftUI
 
 struct HistoryView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color("bgPurple")
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack {
+                    HistoryItem()
+                }
+            }
+            /*VStack {
+                Spacer()
+                HStack {
+                    Text("History")
+                        .foregroundColor(.white)
+                        .font(.system(size: 28, weight: .bold, design: .default))
+                    
+                    Image(systemName: "plus.circle")
+                        .resizable()
+                        .clipped()
+                        .frame(width: 60, height: 60)
+                    
+                }
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack {
+                        HistoryItem()
+                        HistoryItem()
+                    }
+                }
+
+            }*/
+            
+            
+            
+            
+        }
     }
 }
 

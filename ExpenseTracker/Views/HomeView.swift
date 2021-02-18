@@ -16,10 +16,11 @@ struct HomeView: View {
             
             VStack {
                 
-                MainStatusView()
+                MainStatusView().offset(y: 100)
                 
-                Rectangle().fill(Color.white)
+                Rectangle().fill(Color.white).offset(y: 100)
             }
+            
             
             VStack {
                 ExpenseItem()
@@ -28,7 +29,7 @@ struct HomeView: View {
                 ExpenseItem()
                 ExpenseItem()
 
-            }.offset(y: 116)
+            }.offset(y: 166)
             
             
         }.edgesIgnoringSafeArea(.all)
