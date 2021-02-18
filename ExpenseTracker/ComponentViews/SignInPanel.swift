@@ -15,37 +15,58 @@ struct SignInPanel: View {
     
     var body: some View {
         
-        VStack(alignment: .center) {
+        VStack(alignment: .center, spacing: 40) {
             
             Text("Sign In")
                 .font(.system(size: 24, weight: .bold, design: .default))
             
             VStack(alignment: .leading) {
                 Text("Email Address")
+                    .font(.system(size: 16, weight: .medium, design: .default))
+                    .foregroundColor(.gray)
                 TextField("email address", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 
-                
-            }
+            }.padding([.leading, .trailing], 36)
             
             VStack(alignment: .leading) {
                 Text("Password")
-                TextField("password", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            }
+                    .font(.system(size: 16, weight: .medium, design: .default))
+                    .foregroundColor(.gray)
+                
+                VStack(alignment: .trailing) {
+                    TextField("password", text: $password)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    Text("Forgot Password?")
+                    .font(.system(size: 16, weight: .medium, design: .default))
+                }
+                
+                
+            }.padding([.leading, .trailing], 36)
             
-            VStack(alignment: .trailing) {
-                Text("Forgot Password?")
+            VStack(spacing: 66) {
+               
                 Button(action: {}){
                     Text("Sign In")
+                        .padding(EdgeInsets(top: 18, leading: 138, bottom: 18, trailing: 138))
+                        .background(Color("bgPurple"))
+                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .medium, design: .default))
+                    .cornerRadius(10)
                     
                 }
+                
+                HStack {
+                    Text("I'm a new user.")
+                        .font(.system(size: 16, weight: .medium, design: .default))
+                    Text("Sign Up")
+                        .foregroundColor(Color("bgPurple"))
+                        .font(.system(size: 16, weight: .medium, design: .default))
+                }
+                
             }
             
-            HStack {
-                Text("I'm a new user.")
-                Text("Sign Up")
-            }
+            
         }
     }
 }
