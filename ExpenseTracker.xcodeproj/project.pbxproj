@@ -19,6 +19,7 @@
 		9203507C25DDD3CB0050563E /* SignInPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203507B25DDD3CB0050563E /* SignInPanel.swift */; };
 		922079CA25DF1DFF00ED7579 /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922079C925DF1DFF00ED7579 /* HistoryItem.swift */; };
 		922079CD25E0585400ED7579 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 922079CC25E0585400ED7579 /* SwiftUICharts */; };
+		922079CF25E0719700ED7579 /* SignUpPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922079CE25E0719700ED7579 /* SignUpPanel.swift */; };
 		922570C825D98A6C00367D6C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922570C725D98A6C00367D6C /* SignInView.swift */; };
 		92DC9A3925D86C0200DB4246 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DC9A3825D86C0200DB4246 /* AppDelegate.swift */; };
 		92DC9A3B25D86C0200DB4246 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DC9A3A25D86C0200DB4246 /* SceneDelegate.swift */; };
@@ -40,6 +41,7 @@
 		9203507925DDC7560050563E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		9203507B25DDD3CB0050563E /* SignInPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPanel.swift; sourceTree = "<group>"; };
 		922079C925DF1DFF00ED7579 /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
+		922079CE25E0719700ED7579 /* SignUpPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPanel.swift; sourceTree = "<group>"; };
 		922570C725D98A6C00367D6C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		92DC9A3525D86C0200DB4246 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DC9A3825D86C0200DB4246 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				9203506A25DD9F0E0050563E /* ExpenseItem.swift */,
 				9203507B25DDD3CB0050563E /* SignInPanel.swift */,
 				922079C925DF1DFF00ED7579 /* HistoryItem.swift */,
+				922079CE25E0719700ED7579 /* SignUpPanel.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 			files = (
 				9203506D25DDA6A40050563E /* MainStatusView.swift in Sources */,
 				9203507825DDBDE00050563E /* HistoryView.swift in Sources */,
+				922079CF25E0719700ED7579 /* SignUpPanel.swift in Sources */,
 				9203507125DDBCBF0050563E /* ProfileView.swift in Sources */,
 				92DC9A3925D86C0200DB4246 /* AppDelegate.swift in Sources */,
 				9203506F25DDA7820050563E /* TabNavView.swift in Sources */,
@@ -365,7 +369,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.5;
+				CURRENT_PROJECT_VERSION = 1.1.6;
 				DEVELOPMENT_ASSET_PATHS = "\"ExpenseTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8L83CZ8839;
 				ENABLE_PREVIEWS = YES;
@@ -386,7 +390,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.5;
+				CURRENT_PROJECT_VERSION = 1.1.6;
 				DEVELOPMENT_ASSET_PATHS = "\"ExpenseTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8L83CZ8839;
 				ENABLE_PREVIEWS = YES;

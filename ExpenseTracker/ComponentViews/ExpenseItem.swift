@@ -43,6 +43,7 @@ struct ExpenseItem: View {
                 .foregroundColor(Color(red: 216/255, green: 108/255, blue: 133/255))
             
         }.padding(.all, 20)
+            .frame(height: 80)
             .background(Color.white)
             .cornerRadius(16).shadow(color: .gray, radius: 4)
         

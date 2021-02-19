@@ -25,18 +25,21 @@ struct HomeView: View {
                 Spacer()
                 MainStatusView()
                     
-                    
-                VStack {
-                    ExpenseItem()
-                    ExpenseItem()
-                    ExpenseItem()
-                    ExpenseItem()
-                    ExpenseItem()
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack {
+                        ExpenseItem()
+                        ExpenseItem()
+                        ExpenseItem()
+                        ExpenseItem()
+                        ExpenseItem()
                         
-                }.offset(y: -60)
+                    }.padding()
+                }.offset(y: -63).frame(height: 480)
+                
+                
                 Spacer()
             }.padding()
-                .padding(.top, 60)
+                .padding(.top, 70)
             
             
             
