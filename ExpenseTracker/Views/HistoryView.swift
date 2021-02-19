@@ -9,41 +9,66 @@
 import SwiftUI
 
 struct HistoryView: View {
+    
+    @State var query = ""
+    
     var body: some View {
         ZStack {
             Color("bgPurple")
-            ScrollView(.vertical, showsIndicators: false) {
+            VStack(spacing: 0) {
+                
                 VStack {
-                    HistoryItem()
-                }
-            }
-            /*VStack {
-                Spacer()
-                HStack {
-                    Text("History")
-                        .foregroundColor(.white)
-                        .font(.system(size: 28, weight: .bold, design: .default))
+                    HStack(spacing: 250) {
+                        Text("History")
+                            .foregroundColor(.white)
+                            .font(.system(size: 28, weight: .bold, design: .default))
+                        
+                        Image(systemName: "plus.circle")
+                            .resizable()
+                            .clipped()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.white)
+                        
+                        
+                    }
                     
-                    Image(systemName: "plus.circle")
-                        .resizable()
-                        .clipped()
-                        .frame(width: 60, height: 60)
-                    
-                }
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.gray)
+                            .aspectRatio(contentMode: .fit)
+                        TextField("Search history", text: $query)
+                        
+                        }.padding()
+                        .frame(height: 54)
+                        .background(Color.white)
+                        .cornerRadius(30)
+
+                }.padding()
+                
+                
+                
                 
                 ScrollView(.vertical, showsIndicators: false) {
-                    VStack {
+                    VStack(spacing: 0) {
+                        HistoryItem()
+                        HistoryItem()
+                        HistoryItem()
+                        HistoryItem()
+                        HistoryItem()
+                        HistoryItem()
+                        HistoryItem()
+                        HistoryItem()
                         HistoryItem()
                         HistoryItem()
                     }
                 }
 
-            }*/
+            }.offset(y: 160)
             
-            
-            
-            
-        }
+        }.edgesIgnoringSafeArea(.all)
+        
+
     }
 }
 

@@ -11,7 +11,7 @@ import SwiftUI
 struct HistoryItem: View {
     var body: some View {
         
-        GeometryReader { gr in
+        
             
             HStack(spacing: 120) {
                 
@@ -46,9 +46,9 @@ struct HistoryItem: View {
                     .foregroundColor(Color(red: 216/255, green: 108/255, blue: 133/255))
                 
             }.padding(.all, 20)
-            .frame(width: gr.size.width, height: 88)
+            .frame(width: 420, height: 88)
             .background(Color.white)
-        }
+        
         
             
     }

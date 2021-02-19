@@ -13,23 +13,25 @@ struct HomeView: View {
         
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color("bgPurple"), .purple]), startPoint: .topLeading, endPoint: .bottomTrailing)
+            Rectangle().fill(Color.white).offset(y: 500)
             
-            VStack {
-                
-                MainStatusView().offset(y: 100)
-                
-                Rectangle().fill(Color.white).offset(y: 100)
+            VStack(spacing: 0) {
+                Spacer()
+                Spacer()
+                MainStatusView()
+                    
+                    
+                VStack {
+                    ExpenseItem()
+                    ExpenseItem()
+                    ExpenseItem()
+                    ExpenseItem()
+                    ExpenseItem()
+                        
+                }.offset(y: -60)
+                Spacer()
             }
             
-            
-            VStack {
-                ExpenseItem()
-                ExpenseItem()
-                ExpenseItem()
-                ExpenseItem()
-                ExpenseItem()
-
-            }.offset(y: 166)
             
             
         }.edgesIgnoringSafeArea(.all)
