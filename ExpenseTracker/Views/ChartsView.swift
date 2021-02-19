@@ -46,15 +46,22 @@ struct ChartsView: View {
                 VStack(spacing: 26) {
                     Spacer()
                         
-                    MultiLineChartView(data: [([8,32,11,23,40,28], GradientColors.green), ([90,99,78,111,70,60,77], GradientColors.purple), ([34,56,72,38,43,100,50], GradientColors.orngPink)], title: "Title", form: ChartForm.large)
+                    MultiLineChartView(data: [([8,32,11,23,40,28], GradientColors.orngPink), ([90,99,78,111,70,60,77], GradientColors.purple)], title: "Income VS. Expense", form: ChartForm.large)
                         
                     
                     Spacer()
-                    HStack(spacing: 30) {
-                        BarChartView(data: ChartData(values: [("2018 Q4",63150), ("2019 Q1",50900), ("2019 Q2",77550), ("2019 Q3",79600), ("2019 Q4",92550)]), title: "Sales", legend: "Quarterly") // legend is optional
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 30) {
+                            BarChartView(data: ChartData(values: [("2018 Q4",63150), ("2019 Q1",50900), ("2019 Q2",77550), ("2019 Q3",79600), ("2019 Q4",92550)]), title: "Recent Income", legend: "Monthly")
+                            
+                            PieChartView(data: [8,23,54,32], title: "Category", legend: "Cumulative")
+                            
+                            LineChartView(data: [8,23,54,32,12,37,7,23,43], title: "Recent Expense", legend: "Monthly", form: ChartForm.detail)
+                        }.padding()
                         
-                        PieChartView(data: [8,23,54,32], title: "Title", legend: "Legendary") // legend is optional
                     }
+                    
                     
                    Spacer()
                 }
