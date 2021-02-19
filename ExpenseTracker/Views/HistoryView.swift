@@ -64,9 +64,9 @@ struct HistoryView: View {
                     }
                 }
 
-            }.offset(y: 160)
+            }.padding(.top, 120)
             
-        }.edgesIgnoringSafeArea(.all)
+        }
         
 
     }
