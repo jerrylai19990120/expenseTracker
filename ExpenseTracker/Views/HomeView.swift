@@ -12,8 +12,13 @@ struct HomeView: View {
     var body: some View {
         
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color("bgPurple"), .purple]), startPoint: .topLeading, endPoint: .bottomTrailing)
-            Rectangle().fill(Color.white).offset(y: 500)
+            
+            VStack(spacing: 0) {
+                Rectangle().fill(                LinearGradient(gradient: Gradient(colors: [Color("bgPurple"), .purple]), startPoint: .topLeading, endPoint: .bottomTrailing))
+
+                Rectangle().fill(Color.white)
+            }
+            
             
             VStack(spacing: 0) {
                 Spacer()
@@ -30,11 +35,12 @@ struct HomeView: View {
                         
                 }.offset(y: -60)
                 Spacer()
-            }
+            }.padding()
+                .padding(.top, 60)
             
             
             
-        }.edgesIgnoringSafeArea(.all)
+        }
     }
 }
 

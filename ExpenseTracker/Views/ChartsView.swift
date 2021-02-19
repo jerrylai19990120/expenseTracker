@@ -53,11 +53,11 @@ struct ChartsView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 30) {
-                            BarChartView(data: ChartData(values: [("2018 Q4",63150), ("2019 Q1",50900), ("2019 Q2",77550), ("2019 Q3",79600), ("2019 Q4",92550)]), title: "Recent Income", legend: "Monthly")
+                            BarChartView(data: ChartData(values: [("2018 Q4",63150), ("2019 Q1",50900), ("2019 Q2",77550), ("2019 Q3",79600), ("2019 Q4",92550)]), title: "Income", legend: "Monthly")
                             
                             PieChartView(data: [8,23,54,32], title: "Category", legend: "Cumulative")
                             
-                            LineChartView(data: [8,23,54,32,12,37,7,23,43], title: "Recent Expense", legend: "Monthly", form: ChartForm.detail)
+                            LineChartView(data: [8,23,54,32,12,37,7,23,43], title: "Expense", legend: "Monthly", form: ChartForm.detail)
                         }.padding()
                         
                     }
