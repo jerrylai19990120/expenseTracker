@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		9203507A25DDC7560050563E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203507925DDC7560050563E /* SignUpView.swift */; };
 		9203507C25DDD3CB0050563E /* SignInPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203507B25DDD3CB0050563E /* SignInPanel.swift */; };
 		922079CA25DF1DFF00ED7579 /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922079C925DF1DFF00ED7579 /* HistoryItem.swift */; };
+		922079CD25E0585400ED7579 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 922079CC25E0585400ED7579 /* SwiftUICharts */; };
 		922570C825D98A6C00367D6C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922570C725D98A6C00367D6C /* SignInView.swift */; };
 		92DC9A3925D86C0200DB4246 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DC9A3825D86C0200DB4246 /* AppDelegate.swift */; };
 		92DC9A3B25D86C0200DB4246 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DC9A3A25D86C0200DB4246 /* SceneDelegate.swift */; };
@@ -55,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				922079CD25E0585400ED7579 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +153,9 @@
 			dependencies = (
 			);
 			name = ExpenseTracker;
+			packageProductDependencies = (
+				922079CC25E0585400ED7579 /* SwiftUICharts */,
+			);
 			productName = ExpenseTracker;
 			productReference = 92DC9A3525D86C0200DB4246 /* ExpenseTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -179,6 +184,9 @@
 				Base,
 			);
 			mainGroup = 92DC9A2C25D86C0200DB4246;
+			packageReferences = (
+				922079CB25E0585400ED7579 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = 92DC9A3625D86C0200DB4246 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -357,7 +365,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.4;
+				CURRENT_PROJECT_VERSION = 1.1.5;
 				DEVELOPMENT_ASSET_PATHS = "\"ExpenseTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8L83CZ8839;
 				ENABLE_PREVIEWS = YES;
@@ -378,7 +386,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.4;
+				CURRENT_PROJECT_VERSION = 1.1.5;
 				DEVELOPMENT_ASSET_PATHS = "\"ExpenseTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8L83CZ8839;
 				ENABLE_PREVIEWS = YES;
@@ -416,6 +424,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		922079CB25E0585400ED7579 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		922079CC25E0585400ED7579 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 922079CB25E0585400ED7579 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 92DC9A2D25D86C0200DB4246 /* Project object */;
 }
