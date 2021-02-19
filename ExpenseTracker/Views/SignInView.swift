@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct SignInView: View {
+    
+    var offset: CGFloat = 280
+    
     var body: some View {
         ZStack {
             GeometryReader { gr in
@@ -17,15 +20,15 @@ struct SignInView: View {
                     .resizable()
                     .frame(width: gr.size.width, height: 460, alignment: .center)
                     .offset(y: -60)
-                    //.cornerRadius(20)
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 40)
                         .fill(Color(red: 238/255, green: 238/255, blue: 238/255))
                         .frame(height: gr.size.height*0.7)
-                        .offset(y:280)
+                        .offset(y:self.offset)
+                        .animation(.linear(duration: 0.5))
                     
-                    SignInPanel().offset(y: 280)
+                    SignInPanel().offset(y: 280).animation(.linear(duration: 0.5))
                 }
                 
                 
@@ -35,6 +38,7 @@ struct SignInView: View {
                 
         }
     }
+    
 }
 
 struct SignInView_Previews: PreviewProvider {
