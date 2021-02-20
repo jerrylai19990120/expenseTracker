@@ -18,9 +18,22 @@ struct ProfileView: View {
             
             VStack {
                 
-                Text("User Profile").foregroundColor(.white)
-                    .font(.system(size: 26, weight: .bold, design: .default)).padding(.top, 120)
-                    .padding(.bottom, 20)
+                HStack(alignment: .center, spacing: 180) {
+                    
+                    Text("User Profile").foregroundColor(.white)
+                        .font(.system(size: 26, weight: .bold, design: .default))
+                    
+                    NavigationLink(destination: WelcomeView().navigationBarTitle("").navigationBarHidden(true)){
+                        Image(systemName: "arrow.right.square")
+                            .resizable().aspectRatio(contentMode: .fit)
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(.white)
+                    }
+                    
+                    
+                    }.padding()
+                    .padding(.top, 120)
+                    .padding(.bottom, 0)
                 Image(systemName: "person.fill")
                     .resizable().aspectRatio(contentMode: .fit)
                 .clipped()
