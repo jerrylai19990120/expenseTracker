@@ -18,7 +18,7 @@ struct SignUpPanel: View {
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
             
-            Text("Sign In")
+            Text("Sign Up")
                 .font(.system(size: 24, weight: .bold, design: .default))
                 .offset(y:-20)
             

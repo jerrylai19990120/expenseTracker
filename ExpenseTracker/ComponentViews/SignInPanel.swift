@@ -13,6 +13,8 @@ struct SignInPanel: View {
     @State var email = ""
     @State var password = ""
     
+    @Binding var isSignUp: Bool
+    
     var body: some View {
         
         VStack(alignment: .center, spacing: 10) {
@@ -79,7 +81,9 @@ struct SignInPanel: View {
                         NavigationLink(destination: SignUpView().navigationBarTitle("").navigationBarHidden(true)){
                             Text("Sign Up")
                                 .foregroundColor(Color("bgPurple"))
-                                .font(.system(size: 16, weight: .medium, design: .default))
+                                .font(.system(size: 16, weight: .medium, design: .default)).onTapGesture {
+                                        self.isSignUp.toggle()
+                                }
 
                         }
                         
@@ -95,10 +99,10 @@ struct SignInPanel: View {
     }
 }
 
-struct SignInPanel_Previews: PreviewProvider {
+/*struct SignInPanel_Previews: PreviewProvider {
     
     static var previews: some View {
         SignInPanel()
     }
     
-}
+}*/

@@ -11,6 +11,7 @@ import SwiftUI
 struct SignInView: View {
     
     @State var open = false
+    @State var isSignUp = false
     
     var body: some View {
         ZStack {
@@ -21,16 +22,32 @@ struct SignInView: View {
                     .frame(width: gr.size.width, height: 460, alignment: .center)
                     .offset(y: -60)
                 
+                
                 ZStack {
                     RoundedRectangle(cornerRadius: 40)
                         .fill(Color(red: 238/255, green: 238/255, blue: 238/255))
-                        .frame(height: gr.size.height*0.7)
+                        .frame(height: gr.size.height*0.92)
                         
-                    
-                    SignInPanel()
-                    
-                }.offset(y: self.open ? 280 : gr.size.height+80)
-                    .animation(.default)
+                        
+                    SignUpPanel()
+                        
+                }.offset(y: self.isSignUp ? 96 :gr.size.height+80)
+                        .animation(.default)
+                
+                if !self.isSignUp {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 40)
+                            .fill(Color(red: 238/255, green: 238/255, blue: 238/255))
+                            .frame(height: gr.size.height*0.7)
+                        
+                        
+                        SignInPanel(isSignUp: self.$isSignUp)
+                        
+                    }.offset(y: self.open ? 280 : gr.size.height+80)
+                        .animation(.default)
+                }
+                
+                
                 
                 
                 
