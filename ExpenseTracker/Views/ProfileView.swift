@@ -32,7 +32,7 @@ struct ProfileView: View {
                     
                     
                     }.padding()
-                    .padding(.top, 120)
+                    .padding(.top, 116)
                     .padding(.bottom, 0)
                 Image(systemName: "person.fill")
                     .resizable().aspectRatio(contentMode: .fit)

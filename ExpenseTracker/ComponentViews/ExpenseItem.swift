@@ -27,8 +27,9 @@ struct ExpenseItem: View {
                 
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Fly to Paris")
-                        .font(.system(size: 20, weight: .medium, design: .default))
+                        .font(.system(size: 16, weight: .medium, design: .default))
                         .foregroundColor(Color.black)
+                    
                     
                     
                     Text("May 12 at 9:30PM")
