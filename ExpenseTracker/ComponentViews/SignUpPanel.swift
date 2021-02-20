@@ -94,7 +94,7 @@ struct SignUpPanel: View {
                     HStack {
                         Text("I'm already a member.")
                             .font(.system(size: 16, weight: .medium, design: .default))
-                        NavigationLink(destination: SignInView().navigationBarTitle("").navigationBarHidden(true)){
+                        
                             
                             Text("Sign In")
                                 .foregroundColor(Color("bgPurple"))
@@ -102,7 +102,7 @@ struct SignUpPanel: View {
                                     self.isSignUp.toggle()
                                     
                             }
-                        }
+                        
                         
                     }
                     

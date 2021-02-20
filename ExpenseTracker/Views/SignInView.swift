@@ -11,6 +11,11 @@ import SwiftUI
 struct SignInView: View {
     
     @State var isSignUp = false
+    var signUp = false
+    
+    init(isSignUp: Bool){
+        self.signUp = isSignUp
+    }
     
     var body: some View {
         ZStack {
@@ -49,15 +54,19 @@ struct SignInView: View {
             
                 
         }.onAppear(){
-            self.isSignUp = false
+            if self.signUp {
+                self.isSignUp = true
+            } else {
+                self.isSignUp = false
+            }
         }
     }
     
 }
 
-struct SignInView_Previews: PreviewProvider {
+/*struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
     }
 }
-
+*/

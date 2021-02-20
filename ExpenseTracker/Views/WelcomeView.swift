@@ -10,7 +10,6 @@ import SwiftUI
 
 struct WelcomeView: View {
     
-    
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing:48) {
@@ -35,7 +34,7 @@ struct WelcomeView: View {
                     Button(action: {
                         
                     }) {
-                        NavigationLink(destination: SignInView().navigationBarTitle("")
+                        NavigationLink(destination: SignInView(isSignUp: false).navigationBarTitle("")
                         .navigationBarHidden(true)) {
                             Text("SIGN IN")
                                 .foregroundColor(.white)
@@ -52,7 +51,7 @@ struct WelcomeView: View {
                     
                     Button(action: {}) {
                         
-                        NavigationLink(destination: SignUpView().navigationBarTitle("")
+                        NavigationLink(destination: SignInView(isSignUp: true).navigationBarTitle("")
                         .navigationBarHidden(true)) {
                             Text(/*@START_MENU_TOKEN@*/"SIGN UP"/*@END_MENU_TOKEN@*/)
                                 .foregroundColor(Color(red: 149/255, green: 80/255, blue: 230/255))
