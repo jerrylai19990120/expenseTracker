@@ -30,24 +30,24 @@ struct SignInView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 40)
                         .fill(Color(red: 238/255, green: 238/255, blue: 238/255))
-                        .frame(height: gr.size.height*0.92)
+                        .frame(height: gr.size.height)
                         
                         
                     SignUpPanel(isSignUp: self.$isSignUp)
                         
-                }.offset(y: self.isSignUp ? 96 :gr.size.height+80)
+                }.offset(y: self.isSignUp ? 46 :gr.size.height+80)
                         .animation(.default)
                 
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 40)
                         .fill(Color(red: 238/255, green: 238/255, blue: 238/255))
-                        .frame(height: gr.size.height*0.7)
+                        .frame(height: gr.size.height*0.76)
                         
                         
                     SignInPanel(isSignUp: self.$isSignUp)
                         
-                }.offset(y: !self.isSignUp ? 280 : gr.size.height+80)
+                }.offset(y: !self.isSignUp ? 254 : gr.size.height+80)
                     .animation(.default)
                 
             }

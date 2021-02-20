@@ -15,7 +15,6 @@
 		9203507425DDBD0B0050563E /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203507325DDBD0A0050563E /* ChartsView.swift */; };
 		9203507625DDBD2A0050563E /* AddActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203507525DDBD2A0050563E /* AddActivityView.swift */; };
 		9203507825DDBDE00050563E /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203507725DDBDE00050563E /* HistoryView.swift */; };
-		9203507A25DDC7560050563E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203507925DDC7560050563E /* SignUpView.swift */; };
 		9203507C25DDD3CB0050563E /* SignInPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203507B25DDD3CB0050563E /* SignInPanel.swift */; };
 		922079CA25DF1DFF00ED7579 /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922079C925DF1DFF00ED7579 /* HistoryItem.swift */; };
 		922079CD25E0585400ED7579 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 922079CC25E0585400ED7579 /* SwiftUICharts */; };
@@ -38,7 +37,6 @@
 		9203507325DDBD0A0050563E /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		9203507525DDBD2A0050563E /* AddActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityView.swift; sourceTree = "<group>"; };
 		9203507725DDBDE00050563E /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
-		9203507925DDC7560050563E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		9203507B25DDD3CB0050563E /* SignInPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPanel.swift; sourceTree = "<group>"; };
 		922079C925DF1DFF00ED7579 /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
 		922079CE25E0719700ED7579 /* SignUpPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPanel.swift; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				9203507325DDBD0A0050563E /* ChartsView.swift */,
 				9203507525DDBD2A0050563E /* AddActivityView.swift */,
 				9203507725DDBDE00050563E /* HistoryView.swift */,
-				9203507925DDC7560050563E /* SignUpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,7 +225,6 @@
 				922570C825D98A6C00367D6C /* SignInView.swift in Sources */,
 				922079CA25DF1DFF00ED7579 /* HistoryItem.swift in Sources */,
 				9203507C25DDD3CB0050563E /* SignInPanel.swift in Sources */,
-				9203507A25DDC7560050563E /* SignUpView.swift in Sources */,
 				9203507425DDBD0B0050563E /* ChartsView.swift in Sources */,
 				9203506725DD92280050563E /* HomeView.swift in Sources */,
 				92DC9A3D25D86C0200DB4246 /* WelcomeView.swift in Sources */,
@@ -369,7 +365,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.7;
+				CURRENT_PROJECT_VERSION = 1.1.9;
 				DEVELOPMENT_ASSET_PATHS = "\"ExpenseTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8L83CZ8839;
 				ENABLE_PREVIEWS = YES;
@@ -390,7 +386,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.7;
+				CURRENT_PROJECT_VERSION = 1.1.9;
 				DEVELOPMENT_ASSET_PATHS = "\"ExpenseTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8L83CZ8839;
 				ENABLE_PREVIEWS = YES;

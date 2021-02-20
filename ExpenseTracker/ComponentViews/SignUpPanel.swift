@@ -74,7 +74,7 @@ struct SignUpPanel: View {
                     
                 }.padding([.leading, .trailing], 36)
                 
-                VStack(spacing: 66) {
+                VStack(spacing: 54) {
                     
                     Button(action: {}){
                         
@@ -104,6 +104,11 @@ struct SignUpPanel: View {
                             }
                         
                         
+                    }
+                    
+                    NavigationLink(destination: WelcomeView().navigationBarTitle("").navigationBarHidden(true)) {
+                        Text("Cancel")
+                        .font(.system(size: 16, weight: .medium, design: .default))
                     }
                     
                 }
