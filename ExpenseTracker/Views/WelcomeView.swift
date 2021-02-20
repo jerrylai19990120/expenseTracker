@@ -10,6 +10,7 @@ import SwiftUI
 
 struct WelcomeView: View {
     
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing:48) {
@@ -30,10 +31,10 @@ struct WelcomeView: View {
                 
                 
                 VStack(alignment: .center, spacing: 20) {
-                    
-                    
                         
-                    Button(action: {}) {
+                    Button(action: {
+                        
+                    }) {
                         NavigationLink(destination: SignInView().navigationBarTitle("")
                         .navigationBarHidden(true)) {
                             Text("SIGN IN")
