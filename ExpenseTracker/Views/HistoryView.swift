@@ -14,11 +14,15 @@ struct HistoryView: View {
     
     var body: some View {
         ZStack {
-            Color("bgPurple")
+            
+            VStack {
+                Rectangle().fill(Color("bgPurple"))
+            }
+            
             VStack(spacing: 0) {
                 
                 VStack {
-                    HStack(spacing: 250) {
+                    HStack(spacing: 230) {
                         Text("History")
                             .foregroundColor(.white)
                             .font(.system(size: 28, weight: .bold, design: .default))
@@ -64,7 +68,7 @@ struct HistoryView: View {
                     }
                 }
 
-            }.padding(.top, 120)
+            }.padding(.top, 100)
             
         }
         

@@ -10,7 +10,11 @@ import SwiftUI
 
 struct SignUpView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Rectangle().fill(Color(red: 245/255, green: 247/255, blue: 249/255))
+            SignUpPanel()
+        }.edgesIgnoringSafeArea(.all)
+        
     }
 }
 

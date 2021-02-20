@@ -19,7 +19,7 @@ struct ChartsView: View {
             VStack {
                 
                 
-                HStack(spacing: 100) {
+                HStack(spacing: 90) {
                     Text("Expense Analysis")
                         .foregroundColor(.white)
                         .font(.system(size: 28, weight: .bold, design: .default))
@@ -36,7 +36,7 @@ struct ChartsView: View {
 
                 }.frame(width: 400)
                 .padding()
-                    .padding(.top, 110)
+                    .padding(.top, 100)
                 .background(Color("bgPurple"))
                     
                 Spacer()
@@ -49,7 +49,7 @@ struct ChartsView: View {
                     MultiLineChartView(data: [([8,32,11,23,40,28], GradientColors.orngPink), ([90,99,78,111,70,60,77], GradientColors.purple)], title: "Income VS. Expense", form: ChartForm.large)
                         
                     
-                    Spacer()
+                    
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 30) {

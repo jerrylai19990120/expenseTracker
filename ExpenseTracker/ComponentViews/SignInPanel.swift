@@ -75,9 +75,14 @@ struct SignInPanel: View {
                     HStack {
                         Text("I'm a new user.")
                             .font(.system(size: 16, weight: .medium, design: .default))
-                        Text("Sign Up")
-                            .foregroundColor(Color("bgPurple"))
-                            .font(.system(size: 16, weight: .medium, design: .default))
+                        
+                        NavigationLink(destination: SignUpView().navigationBarTitle("").navigationBarHidden(true)){
+                            Text("Sign Up")
+                                .foregroundColor(Color("bgPurple"))
+                                .font(.system(size: 16, weight: .medium, design: .default))
+
+                        }
+                        
                     }
                     
                 }

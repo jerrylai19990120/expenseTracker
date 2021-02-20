@@ -10,7 +10,6 @@ import SwiftUI
 
 struct SignInView: View {
     
-    var offset: CGFloat = 280
     
     var body: some View {
         ZStack {
@@ -25,10 +24,10 @@ struct SignInView: View {
                     RoundedRectangle(cornerRadius: 40)
                         .fill(Color(red: 238/255, green: 238/255, blue: 238/255))
                         .frame(height: gr.size.height*0.7)
-                        .offset(y:self.offset)
-                        .animation(.linear(duration: 0.5))
+                        .offset(y:280)
+                        
                     
-                    SignInPanel().offset(y: 280).animation(.linear(duration: 0.5))
+                    SignInPanel().offset(y: 280)
                 }
                 
                 
