@@ -12,7 +12,7 @@ struct SignUpView: View {
     var body: some View {
         ZStack {
             Rectangle().fill(Color(red: 245/255, green: 247/255, blue: 249/255))
-            SignUpPanel()
+            //SignUpPanel()
         }.edgesIgnoringSafeArea(.all)
         
     }

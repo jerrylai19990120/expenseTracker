@@ -10,7 +10,6 @@ import SwiftUI
 
 struct SignInView: View {
     
-    @State var open = false
     @State var isSignUp = false
     
     var body: some View {
@@ -29,33 +28,28 @@ struct SignInView: View {
                         .frame(height: gr.size.height*0.92)
                         
                         
-                    SignUpPanel()
+                    SignUpPanel(isSignUp: self.$isSignUp)
                         
                 }.offset(y: self.isSignUp ? 96 :gr.size.height+80)
                         .animation(.default)
                 
-                if !self.isSignUp {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 40)
-                            .fill(Color(red: 238/255, green: 238/255, blue: 238/255))
-                            .frame(height: gr.size.height*0.7)
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 40)
+                        .fill(Color(red: 238/255, green: 238/255, blue: 238/255))
+                        .frame(height: gr.size.height*0.7)
                         
                         
-                        SignInPanel(isSignUp: self.$isSignUp)
+                    SignInPanel(isSignUp: self.$isSignUp)
                         
-                    }.offset(y: self.open ? 280 : gr.size.height+80)
-                        .animation(.default)
-                }
-                
-                
-                
-                
+                }.offset(y: !self.isSignUp ? 280 : gr.size.height+80)
+                    .animation(.default)
                 
             }
             
                 
         }.onAppear(){
-            self.open = true
+            self.isSignUp = false
         }
     }
     

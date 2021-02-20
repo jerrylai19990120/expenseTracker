@@ -15,6 +15,8 @@ struct SignUpPanel: View {
     @State var password = ""
     @State var confirmPassword = ""
     
+    @Binding var isSignUp: Bool
+    
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
             
@@ -96,7 +98,10 @@ struct SignUpPanel: View {
                             
                             Text("Sign In")
                                 .foregroundColor(Color("bgPurple"))
-                                .font(.system(size: 16, weight: .medium, design: .default))
+                                .font(.system(size: 16, weight: .medium, design: .default)).onTapGesture {
+                                    self.isSignUp.toggle()
+                                    
+                            }
                         }
                         
                     }
@@ -112,7 +117,8 @@ struct SignUpPanel: View {
 }
 
 struct SignUpPanel_Previews: PreviewProvider {
+    
     static var previews: some View {
-        SignUpPanel()
+        SignUpPanel(isSignUp: .constant(false))
     }
 }

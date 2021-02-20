@@ -78,14 +78,14 @@ struct SignInPanel: View {
                         Text("I'm a new user.")
                             .font(.system(size: 16, weight: .medium, design: .default))
                         
-                        NavigationLink(destination: SignUpView().navigationBarTitle("").navigationBarHidden(true)){
-                            Text("Sign Up")
-                                .foregroundColor(Color("bgPurple"))
-                                .font(.system(size: 16, weight: .medium, design: .default)).onTapGesture {
-                                        self.isSignUp.toggle()
-                                }
+                        
+                        Text("Sign Up")
+                            .foregroundColor(Color("bgPurple"))
+                            .font(.system(size: 16, weight: .medium, design: .default)).onTapGesture {
+                                    self.isSignUp.toggle()
+                            }
 
-                        }
+                        
                         
                     }
                     
@@ -99,10 +99,10 @@ struct SignInPanel: View {
     }
 }
 
-/*struct SignInPanel_Previews: PreviewProvider {
+struct SignInPanel_Previews: PreviewProvider {
     
     static var previews: some View {
-        SignInPanel()
+        SignInPanel(isSignUp: .constant(false))
     }
     
-}*/
+}
