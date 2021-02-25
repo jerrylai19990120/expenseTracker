@@ -10,11 +10,13 @@ import SwiftUI
 
 struct TabNavView: View {
     
+    var gr: GeometryProxy
+    
     var body: some View {
         
         TabView {
             
-            HomeView()
+            HomeView(gr: gr)
                 .tabItem {
                     VStack {
                         Image(systemName: "house")
@@ -23,7 +25,7 @@ struct TabNavView: View {
                 }.navigationBarTitle("")
                 .navigationBarHidden(true)
             
-            HistoryView()
+            HistoryView(gr: gr)
                 .tabItem {
                     VStack {
                         Image(systemName: "clock")
@@ -42,7 +44,7 @@ struct TabNavView: View {
             }.navigationBarTitle("")
             .navigationBarHidden(true)
             
-            ProfileView()
+            ProfileView(gr: gr)
                 .tabItem {
                     VStack {
                         Image(systemName: "person")
@@ -64,6 +66,8 @@ struct TabNavView: View {
 
 struct TabView_Previews: PreviewProvider {
     static var previews: some View {
-        TabNavView()
+        GeometryReader { gr in
+            TabNavView(gr: gr)
+        }
     }
 }

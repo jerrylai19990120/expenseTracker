@@ -9,44 +9,44 @@
 import SwiftUI
 
 struct HistoryItem: View {
+    
+    var gr: GeometryProxy
+    
     var body: some View {
-        
-        
             
-            HStack(spacing: 120) {
+            HStack {
                 
-                HStack(spacing: 10) {
+                HStack(spacing: gr.size.height*0.02) {
                     
                     Image("transportation")
                         .resizable()
                         .clipped()
                         .padding(.all, 8)
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 46, height: 46)
+                        .frame(width: gr.size.width*0.12, height: gr.size.width*0.12)
                         .background(Color(red: 252/255, green: 244/255, blue: 224/255))
-                        .cornerRadius(23)
+                        .cornerRadius(gr.size.width*0.12)
                     
                     
                     
-                    VStack(alignment: .leading, spacing: 8) {
+                    VStack(alignment: .leading, spacing: gr.size.height*0.01) {
                         Text("Fly to Paris")
-                            .font(.system(size: 20, weight: .medium, design: .default))
+                            .font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
                             .foregroundColor(Color.black)
                         
                         
                         Text("May 12 at 9:30PM")
-                            .font(.system(size: 12, weight: .medium, design: .default))
+                            .font(.system(size: gr.size.width*0.03, weight: .medium, design: .default))
                             .foregroundColor(Color.gray)
                     }
                     
                 }
-                
+                Spacer()
                 Text("-$524")
-                    .font(.system(size: 18, weight: .medium, design: .default))
+                    .font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
                     .foregroundColor(Color(red: 216/255, green: 108/255, blue: 133/255))
                 
-            }.padding(.all, 20)
-            .frame(width: 420, height: 88)
+            }.padding(.all)
             .background(Color.white)
         
         
@@ -56,6 +56,8 @@ struct HistoryItem: View {
 
 struct HistoryItem_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryItem()
+        GeometryReader { gr in
+            HistoryItem(gr: gr)
+        }
     }
 }

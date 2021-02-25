@@ -11,6 +11,7 @@ import SwiftUI
 struct HistoryView: View {
     
     @State var query = ""
+    var gr: GeometryProxy
     
     var body: some View {
         ZStack {
@@ -55,16 +56,16 @@ struct HistoryView: View {
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 0) {
-                        HistoryItem()
-                        HistoryItem()
-                        HistoryItem()
-                        HistoryItem()
-                        HistoryItem()
-                        HistoryItem()
-                        HistoryItem()
-                        HistoryItem()
-                        HistoryItem()
-                        HistoryItem()
+                        HistoryItem(gr: gr)
+                        HistoryItem(gr: gr)
+                        HistoryItem(gr: gr)
+                        HistoryItem(gr: gr)
+                        HistoryItem(gr: gr)
+                        HistoryItem(gr: gr)
+                        HistoryItem(gr: gr)
+                        HistoryItem(gr: gr)
+                        HistoryItem(gr: gr)
+                        HistoryItem(gr: gr)
                     }
                 }
 
@@ -78,6 +79,9 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView()
+        GeometryReader { gr in
+            HistoryView(gr: gr)
+        }
+        
     }
 }

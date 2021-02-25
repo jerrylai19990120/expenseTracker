@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    var gr: GeometryProxy
+    
     var body: some View {
         
         ZStack {
@@ -22,34 +25,34 @@ struct HomeView: View {
             
             VStack(spacing: 0) {
                 Spacer()
-                Spacer()
-                MainStatusView()
+                
+                MainStatusView(gr: gr)
                     
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
-                        ExpenseItem()
-                        ExpenseItem()
-                        ExpenseItem()
-                        ExpenseItem()
-                        ExpenseItem()
+                        ExpenseItem(gr: gr)
+                        ExpenseItem(gr: gr)
+                        ExpenseItem(gr: gr)
+                        ExpenseItem(gr: gr)
+                        ExpenseItem(gr: gr)
                         
-                    }.padding()
-                }.offset(y: -63).frame(height: 480)
+                    }.padding().padding(.bottom, gr.size.height*0.1)
+                    
+                }
                 
-                
-                Spacer()
-            }.padding()
-                .padding(.top, 70)
+            }.padding(.top)
             
             
-            
-        }
+        }.edgesIgnoringSafeArea(.all)
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        GeometryReader { gr in
+            HomeView(gr: gr)
+        }
+        
     }
 }
 

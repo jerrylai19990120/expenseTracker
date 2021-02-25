@@ -9,6 +9,9 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
+    var gr: GeometryProxy
+    
     var body: some View {
         ZStack {
             VStack {
@@ -68,14 +71,14 @@ struct ProfileView: View {
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
-                        ExpenseItem()
-                        ExpenseItem()
-                        ExpenseItem()
-                        ExpenseItem()
-                        ExpenseItem()
-                        ExpenseItem()
-                        ExpenseItem()
-                        ExpenseItem()
+                        ExpenseItem(gr: gr)
+                        ExpenseItem(gr: gr)
+                        ExpenseItem(gr: gr)
+                        ExpenseItem(gr: gr)
+                        ExpenseItem(gr: gr)
+                        ExpenseItem(gr: gr)
+                        ExpenseItem(gr: gr)
+                        ExpenseItem(gr: gr)
                     }.padding()
                 }
                 
@@ -87,6 +90,9 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        GeometryReader { gr in
+            ProfileView(gr: gr)
+        }
+        
     }
 }

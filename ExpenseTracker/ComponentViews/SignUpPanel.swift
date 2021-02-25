@@ -76,7 +76,7 @@ struct SignUpPanel: View {
                     
                     Button(action: {}){
                         
-                        NavigationLink(destination: TabNavView()){
+                        NavigationLink(destination: TabNavView(gr: gr)){
                             
                             Text("Sign Up")
                                 .padding()
