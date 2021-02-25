@@ -33,21 +33,21 @@ struct SignInView: View {
                         .frame(height: gr.size.height)
                         
                         
-                    SignUpPanel(isSignUp: self.$isSignUp)
+                    SignUpPanel(isSignUp: self.$isSignUp, gr: gr)
                         
-                }.offset(y: self.isSignUp ? 46 :gr.size.height+80)
+                }.offset(y: self.isSignUp ? gr.size.height*0.01 :gr.size.height+80)
                         .animation(.default)
                 
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 40)
                         .fill(Color(red: 238/255, green: 238/255, blue: 238/255))
-                        .frame(height: gr.size.height*0.76)
+                        .frame(height: gr.size.height*0.88)
                         
                         
-                    SignInPanel(isSignUp: self.$isSignUp)
+                    SignInPanel(isSignUp: self.$isSignUp, gr: gr)
                         
-                }.offset(y: !self.isSignUp ? 254 : gr.size.height+80)
+                }.offset(y: !self.isSignUp ? gr.size.height*0.1 : gr.size.height+80)
                     .animation(.default)
                 
             }
@@ -64,9 +64,9 @@ struct SignInView: View {
     
 }
 
-/*struct SignInView_Previews: PreviewProvider {
+struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        SignInView(isSignUp: true)
     }
 }
-*/
+

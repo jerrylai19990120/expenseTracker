@@ -17,74 +17,73 @@ struct SignUpPanel: View {
     
     @Binding var isSignUp: Bool
     
+    var gr: GeometryProxy
+    
     var body: some View {
-        VStack(alignment: .center, spacing: 10) {
+        VStack(alignment: .center, spacing: gr.size.height*0.01) {
             
             Text("Sign Up")
-                .font(.system(size: 24, weight: .bold, design: .default))
-                .offset(y:-20)
+                .font(.system(size: gr.size.width*0.06, weight: .bold, design: .default))
             
             VStack(alignment: .leading) {
                 Text("Username")
-                    .font(.system(size: 16, weight: .medium, design: .default))
+                    .font(.system(size: gr.size.width*0.04, weight: .medium, design: .default))
                     .foregroundColor(.gray)
                 TextField("Username", text: $email)
                     .textFieldStyle(PlainTextFieldStyle())
-                    .frame(height: 38)
+                    .frame(height: gr.size.height*0.04)
                     .padding()
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color("bgPurple"), lineWidth: 1))
                 
                 Text("Email Address")
-                    .font(.system(size: 16, weight: .medium, design: .default))
+                    .font(.system(size: gr.size.width*0.04, weight: .medium, design: .default))
                     .foregroundColor(.gray)
                 TextField("email address", text: $email)
                     .textFieldStyle(PlainTextFieldStyle())
-                    .frame(height: 38)
+                    .frame(height: gr.size.height*0.04)
                     .padding()
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color("bgPurple"), lineWidth: 1))
                 Text("Password")
-                    .font(.system(size: 16, weight: .medium, design: .default))
+                    .font(.system(size: gr.size.width*0.04, weight: .medium, design: .default))
                     .foregroundColor(.gray)
                 
                 
                 SecureField("password", text: $password)
                     .textFieldStyle(PlainTextFieldStyle())
-                    .frame(height: 38)
+                    .frame(height: gr.size.height*0.04)
                     .padding()
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color("bgPurple"), lineWidth: 1))
                     
-                    
-                
-                
                 
             }.padding([.leading, .trailing], 36)
             
-            VStack(spacing: 40) {
+            VStack(spacing: gr.size.height*0.04) {
                 
                 VStack(alignment: .leading) {
                     Text("Confirm Password")
-                        .font(.system(size: 16, weight: .medium, design: .default))
+                        .font(.system(size: gr.size.width*0.04, weight: .medium, design: .default))
                         .foregroundColor(.gray)
                     SecureField("confirm password", text: $password)
                     .textFieldStyle(PlainTextFieldStyle())
-                    .frame(height: 38)
+                    .frame(height: gr.size.height*0.04)
                     .padding()
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color("bgPurple"), lineWidth: 1))
                     
                     
                 }.padding([.leading, .trailing], 36)
                 
-                VStack(spacing: 54) {
+                VStack(spacing: gr.size.height*0.05) {
                     
                     Button(action: {}){
                         
                         NavigationLink(destination: TabNavView()){
                             
                             Text("Sign Up")
-                                .padding(EdgeInsets(top: 18, leading: 138, bottom: 18, trailing: 138))
+                                .padding()
+                                .frame(width: gr.size.width*0.8)
                                 .background(Color("bgPurple"))
                                 .foregroundColor(.white)
-                                .font(.system(size: 18, weight: .medium, design: .default))
+                                .font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
                                 .cornerRadius(10)
                         }
                         
@@ -93,12 +92,12 @@ struct SignUpPanel: View {
                     
                     HStack {
                         Text("I'm already a member.")
-                            .font(.system(size: 16, weight: .medium, design: .default))
+                            .font(.system(size: gr.size.width*0.04, weight: .medium, design: .default))
                         
                             
                             Text("Sign In")
                                 .foregroundColor(Color("bgPurple"))
-                                .font(.system(size: 16, weight: .medium, design: .default)).onTapGesture {
+                                .font(.system(size: gr.size.width*0.04, weight: .medium, design: .default)).onTapGesture {
                                     self.isSignUp.toggle()
                                     
                             }
@@ -108,7 +107,7 @@ struct SignUpPanel: View {
                     
                     NavigationLink(destination: WelcomeView().navigationBarTitle("").navigationBarHidden(true)) {
                         Text("Cancel")
-                        .font(.system(size: 16, weight: .medium, design: .default))
+                        .font(.system(size: gr.size.width*0.04, weight: .medium, design: .default))
                     }
                     
                 }
@@ -124,6 +123,9 @@ struct SignUpPanel: View {
 struct SignUpPanel_Previews: PreviewProvider {
     
     static var previews: some View {
-        SignUpPanel(isSignUp: .constant(false))
+        GeometryReader { gr in
+            SignUpPanel(isSignUp: .constant(false), gr: gr)
+        }
+        
     }
 }
