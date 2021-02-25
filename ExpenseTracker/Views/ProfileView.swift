@@ -16,31 +16,32 @@ struct ProfileView: View {
         ZStack {
             VStack {
                 Rectangle().fill(Color("bgPurple"))
+                    .frame(height: gr.size.height*0.5)
                 Rectangle().fill(Color.white)
             }
             
             VStack {
-                
-                HStack(alignment: .center, spacing: 180) {
+                Spacer()
+                HStack(alignment: .center) {
                     
                     Text("User Profile").foregroundColor(.white)
-                        .font(.system(size: 26, weight: .bold, design: .default))
-                    
+                        .font(.system(size: gr.size.width*0.06, weight: .bold, design: .default))
+                    Spacer()
                     NavigationLink(destination: WelcomeView().navigationBarTitle("").navigationBarHidden(true)){
                         Image(systemName: "arrow.right.square")
                             .resizable().aspectRatio(contentMode: .fit)
-                            .frame(width: 30, height: 30)
+                            .frame(width: gr.size.height*0.044, height: gr.size.height*0.044)
                             .foregroundColor(.white)
                     }
                     
                     
-                    }.padding()
-                    .padding(.top, 116)
-                    .padding(.bottom, 0)
+                }.padding().padding(.top, gr.size.height*0.05)
+                
+                
                 Image(systemName: "person.fill")
                     .resizable().aspectRatio(contentMode: .fit)
                 .clipped()
-                    .frame(width: 60, height: 60)
+                    .frame(width: gr.size.height*0.1, height: gr.size.height*0.1)
                 .padding()
                     .background(Color.white)
                     .cornerRadius(60)
@@ -49,24 +50,25 @@ struct ProfileView: View {
                 HStack {
                     Text("Hello,")
                     .foregroundColor(.white)
-                    .font(.system(size: 18, weight: .thin, design: .default))
+                    .font(.system(size: gr.size.height*0.03, weight: .thin, design: .default))
                     
                     Text("User")
                     .foregroundColor(.white)
-                    .font(.system(size: 20, weight: .medium, design: .default))
+                    .font(.system(size: gr.size.height*0.035, weight: .medium, design: .default))
                 }.padding()
-                    .padding(.bottom, 26)
+                
+                Spacer()
                 
                 VStack {
                     Text("$ 39,000")
-                        .font(.system(size: 38, weight: .medium, design: .rounded))
+                        .font(.system(size: gr.size.height*0.054, weight: .medium, design: .rounded))
                     Text("CURRENT BALANCE")
-                    .font(.system(size: 18, weight: .medium, design: .rounded))
+                    .font(.system(size: gr.size.height*0.028, weight: .medium, design: .rounded))
                         .foregroundColor(.gray)
                 }.padding()
-                .frame(width: 376, height: 80)
+                    .frame(width: gr.size.width*0.9)
                     .background(Color.white)
-                .cornerRadius(12)
+                    .cornerRadius(12)
                     .shadow(color: .gray, radius: 6)
                 
                 ScrollView(.vertical, showsIndicators: false) {
@@ -84,7 +86,7 @@ struct ProfileView: View {
                 
             }
             
-        }
+        }.edgesIgnoringSafeArea(.all)
     }
 }
 

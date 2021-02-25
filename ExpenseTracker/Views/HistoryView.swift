@@ -26,13 +26,13 @@ struct HistoryView: View {
                     HStack(spacing: 230) {
                         Text("History")
                             .foregroundColor(.white)
-                            .font(.system(size: 28, weight: .bold, design: .default))
+                            .font(.system(size: gr.size.width*0.06, weight: .bold, design: .default))
                         
                         Image(systemName: "plus.circle")
                             .resizable()
                             .clipped()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 30, height: 30)
+                            .frame(width: gr.size.width*0.07, height: gr.size.width*0.07)
                             .foregroundColor(.white)
                         
                         
@@ -45,7 +45,6 @@ struct HistoryView: View {
                         TextField("Search history", text: $query)
                         
                         }.padding()
-                        .frame(height: 54)
                         .background(Color.white)
                         .cornerRadius(30)
 
@@ -69,9 +68,9 @@ struct HistoryView: View {
                     }
                 }
 
-            }.padding(.top, 100)
+            }.padding(.top, gr.size.height*0.04)
             
-        }
+        }.edgesIgnoringSafeArea(.all)
         
 
     }
