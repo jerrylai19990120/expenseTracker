@@ -11,48 +11,39 @@ import SwiftUICharts
 
 struct ChartsView: View {
     
+    var gr: GeometryProxy
     
     var body: some View {
         ZStack {
-            Color(red: 245/255, green: 247/255, blue: 249/255)
+            Color("bgPurple")
             
             VStack {
                 
-                
-                HStack(spacing: 90) {
+                HStack {
                     Text("Expense Analysis")
                         .foregroundColor(.white)
-                        .font(.system(size: 28, weight: .bold, design: .default))
-                    
+                        .font(.system(size: gr.size.width*0.06, weight: .bold, design: .default))
+                    Spacer()
                     Image(systemName: "moon.circle.fill")
                         .renderingMode(.original)
                         .resizable()
                         .clipped()
-                        .frame(width: 40, height: 40)
+                        .frame(width: gr.size.width*0.08, height: gr.size.width*0.08)
                         .aspectRatio(contentMode: .fit)
                         
-                    
-                    
 
-                }.frame(width: 400)
-                .padding()
-                    .padding(.top, 100)
-                .background(Color("bgPurple"))
-                    
-                Spacer()
+                }.padding().padding(.top, gr.size.height*0.1)
                 
-            
                 
-                VStack(spacing: 26) {
-                    Spacer()
-                        
+                VStack {
+                    //Spacer()
                     MultiLineChartView(data: [([8,32,11,23,40,28], GradientColors.orngPink), ([90,99,78,111,70,60,77], GradientColors.purple)], title: "Income VS. Expense", form: ChartForm.large)
                         
                     
                     
-                    
+                    //Spacer()
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 30) {
+                        HStack(spacing: gr.size.width*0.06) {
                             BarChartView(data: ChartData(values: [("2018 Q4",63150), ("2019 Q1",50900), ("2019 Q2",77550), ("2019 Q3",79600), ("2019 Q4",92550)]), title: "Income", legend: "Monthly")
                             
                             PieChartView(data: [8,23,54,32], title: "Category", legend: "Cumulative")
@@ -61,19 +52,22 @@ struct ChartsView: View {
                         }.padding()
                         
                     }
+                    Spacer()
                     
-                    
-                   Spacer()
-                }
+                }.padding(.top, gr.size.height*0.02)
+                    .background(Color(red: 245/255, green: 247/255, blue: 249/255))
                 
-                Spacer()
+                
             }
-        }
+            
+        }.edgesIgnoringSafeArea(.all)
     }
 }
 
 struct ChartsView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartsView()
+        GeometryReader { gr in
+            ChartsView(gr: gr)
+        }
     }
 }

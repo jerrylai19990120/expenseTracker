@@ -35,7 +35,7 @@ struct TabNavView: View {
             .navigationBarHidden(true)
             
             
-            ChartsView()
+            ChartsView(gr: gr)
                 .tabItem{
                     VStack {
                         Image(systemName: "chart.pie")
