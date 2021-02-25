@@ -35,7 +35,7 @@ struct SignInView: View {
                         
                     SignUpPanel(isSignUp: self.$isSignUp, gr: gr)
                         
-                }.offset(y: self.isSignUp ? gr.size.height*0.01 :gr.size.height+80)
+                }.offset(y: self.isSignUp ? gr.size.height*0.07 :gr.size.height+80)
                         .animation(.default)
                 
                 

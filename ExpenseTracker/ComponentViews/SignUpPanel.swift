@@ -31,7 +31,7 @@ struct SignUpPanel: View {
                     .foregroundColor(.gray)
                 TextField("Username", text: $email)
                     .textFieldStyle(PlainTextFieldStyle())
-                    .frame(height: gr.size.height*0.04)
+                    .frame(height: gr.size.height*0.02)
                     .padding()
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color("bgPurple"), lineWidth: 1))
                 
@@ -40,7 +40,7 @@ struct SignUpPanel: View {
                     .foregroundColor(.gray)
                 TextField("email address", text: $email)
                     .textFieldStyle(PlainTextFieldStyle())
-                    .frame(height: gr.size.height*0.04)
+                    .frame(height: gr.size.height*0.02)
                     .padding()
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color("bgPurple"), lineWidth: 1))
                 Text("Password")
@@ -50,7 +50,7 @@ struct SignUpPanel: View {
                 
                 SecureField("password", text: $password)
                     .textFieldStyle(PlainTextFieldStyle())
-                    .frame(height: gr.size.height*0.04)
+                    .frame(height: gr.size.height*0.02)
                     .padding()
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color("bgPurple"), lineWidth: 1))
                     
@@ -65,22 +65,21 @@ struct SignUpPanel: View {
                         .foregroundColor(.gray)
                     SecureField("confirm password", text: $password)
                     .textFieldStyle(PlainTextFieldStyle())
-                    .frame(height: gr.size.height*0.04)
+                    .frame(height: gr.size.height*0.02)
                     .padding()
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color("bgPurple"), lineWidth: 1))
                     
                     
                 }.padding([.leading, .trailing], 36)
                 
-                VStack(spacing: gr.size.height*0.05) {
+                VStack {
                     
                     Button(action: {}){
                         
                         NavigationLink(destination: TabNavView(gr: gr)){
                             
                             Text("Sign Up")
-                                .padding()
-                                .frame(width: gr.size.width*0.8)
+                                .frame(width: gr.size.width*0.8, height: gr.size.height*0.07)
                                 .background(Color("bgPurple"))
                                 .foregroundColor(.white)
                                 .font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
@@ -88,7 +87,7 @@ struct SignUpPanel: View {
                         }
                         
                         
-                    }
+                    }.padding()
                     
                     HStack {
                         Text("I'm already a member.")
@@ -103,12 +102,12 @@ struct SignUpPanel: View {
                             }
                         
                         
-                    }
+                    }.padding()
                     
                     NavigationLink(destination: WelcomeView().navigationBarTitle("").navigationBarHidden(true)) {
                         Text("Cancel")
                         .font(.system(size: gr.size.width*0.04, weight: .medium, design: .default))
-                    }
+                    }.padding()
                     
                 }
             }
