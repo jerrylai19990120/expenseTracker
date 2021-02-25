@@ -11,7 +11,10 @@ import SwiftUI
 struct HistoryView: View {
     
     @State var query = ""
+    
     var gr: GeometryProxy
+    
+    @State var popup = false
     
     var body: some View {
         ZStack {
@@ -34,6 +37,9 @@ struct HistoryView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: gr.size.width*0.07, height: gr.size.width*0.07)
                             .foregroundColor(.white)
+                            .onTapGesture {
+                                self.popup.toggle()
+                        }
                         
                         
                     }
@@ -70,9 +76,14 @@ struct HistoryView: View {
 
             }.padding(.top, gr.size.height*0.04)
             
+            VStack {
+                Spacer()
+                AddActivityView(gr: gr)
+            }.offset(y: popup ? gr.size.height*0.03 : gr.size.height + 88)
+                .animation(.default)
+            
         }.edgesIgnoringSafeArea(.all)
-        
-
+    
     }
 }
 

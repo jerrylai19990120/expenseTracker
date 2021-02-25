@@ -35,7 +35,7 @@ struct ExpenseItem: View {
                     
                     
                     
-                    Text("May 12 at 9:30PM")
+                    Text("May 12, 2020")
                         .font(.system(size: gr.size.width*0.03, weight: .medium, design: .default))
                         .foregroundColor(Color.gray)
                 }
