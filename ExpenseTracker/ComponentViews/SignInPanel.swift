@@ -17,6 +17,9 @@ struct SignInPanel: View {
     
     @State var isLoggedIn = false
     
+    @State var emailErr = ""
+    @State var passwordErr = ""
+    
     var gr: GeometryProxy
     
     var body: some View {
@@ -27,30 +30,45 @@ struct SignInPanel: View {
                 .font(.system(size: gr.size.width*0.06, weight: .bold, design: .default))
             //Spacer()
             VStack(alignment: .leading) {
-                Text("Email Address")
-                    .font(.system(size: gr.size.width*0.04, weight: .medium, design: .default))
-                    .foregroundColor(.gray)
+                HStack {
+                    Text("Email Address")
+                        .font(.system(size: gr.size.width*0.04, weight: .medium, design: .default))
+                        .foregroundColor(.gray)
+                    Spacer()
+                    Text("\(self.emailErr)")
+                    .font(.system(size: gr.size.width*0.04, weight: .light, design: .default))
+                    .foregroundColor(.red)
+                }
+                
                 TextField("email address", text: $email)
                     .textFieldStyle(PlainTextFieldStyle())
                     .frame(height: gr.size.height*0.05)
                     .padding()
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color("bgPurple"), lineWidth: 1))
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(emailErr=="" ? Color("bgPurple") : Color.red, lineWidth: 1))
                 
             }.padding([.leading, .trailing], gr.size.width*0.1)
             
             VStack(spacing: gr.size.height*0.06) {
                 
                 VStack(alignment: .leading) {
-                    Text("Password")
-                        .font(.system(size: gr.size.width*0.04, weight: .medium, design: .default))
-                        .foregroundColor(.gray)
+                    
+                    HStack {
+                        Text("Password")
+                            .font(.system(size: gr.size.width*0.04, weight: .medium, design: .default))
+                            .foregroundColor(.gray)
+                        Spacer()
+                        Text("\(self.passwordErr)")
+                        .font(.system(size: gr.size.width*0.04, weight: .light, design: .default))
+                        .foregroundColor(.red)
+                    }
+                    
                     
                     VStack(alignment: .trailing) {
                         SecureField("password", text: $password)
                             .textFieldStyle(PlainTextFieldStyle())
                             .frame(height: gr.size.height*0.05)
                             .padding()
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color("bgPurple"), lineWidth: 1))
+                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(passwordErr=="" ? Color("bgPurple") : Color.red, lineWidth: 1))
                         
                         
                         Text("Forgot Password?")
@@ -66,8 +84,18 @@ struct SignInPanel: View {
                         
                         Button(action: {
                             AuthService.instance.loginUser(email: self.email, password: self.password) { (success) in
+                                self.emailErr = ""
+                                self.passwordErr = ""
                                 if success {
                                     self.isLoggedIn = true
+                                } else {
+                                    if AuthService.instance.errorCode == 1 {
+                                        self.emailErr = "email is invalid"
+                                    } else if AuthService.instance.errorCode == 2 {
+                                        self.passwordErr = "password is invalid"
+                                    } else if AuthService.instance.errorCode == 3 {
+                                        self.emailErr = "user is not found"
+                                    }
                                 }
                             }
                         }){
