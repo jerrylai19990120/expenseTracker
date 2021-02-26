@@ -23,6 +23,8 @@ class DataService {
         return _REF_USERS
     }
     
+    var transactions = [Transaction]()
+    
     //create an user in the database
     func createUser(uid: String, userData: Dictionary<String, Any>){
         REF_USERS.child(uid).updateChildValues(userData)
@@ -50,7 +52,26 @@ class DataService {
     
     //retrieve all transactions
     func getAllTransactions(uid: String, completion: @escaping (_ status: Bool)->()){
-        //REF_USERS.child(uid)
+        
+        transactions = []
+        
+        REF_USERS.child(uid).child("transactions").observeSingleEvent(of: .value) { (snapshot) in
+            
+            guard let allTransactions = snapshot.children.allObjects as? [DataSnapshot] else {
+                completion(false)
+                return
+            }
+            
+            for item in allTransactions {
+                let transactionInfo = item.value as! [String:Any]
+                
+                let transaction = Transaction(category: transactionInfo["category"] as! String, note: transactionInfo["note"] as! String, date: transactionInfo["date"] as! String, amount: transactionInfo["amount"] as! Int, isIncome: transactionInfo["isIncome"] as! Bool)
+                
+                self.transactions.append(transaction)
+            }
+            
+            completion(true)
+        }
     }
     
 }

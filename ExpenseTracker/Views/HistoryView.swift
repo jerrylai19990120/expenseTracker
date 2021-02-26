@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct HistoryView: View {
     
@@ -16,14 +17,7 @@ struct HistoryView: View {
     
     @State var popup = false
     
-    @State var transactions = [
-        Transaction(category: "Food & Drinks", note: "Buy KFC", date: "May 20, 2020", amount: 20, isIncome: true),
-        
-        Transaction(category: "Clothing", note: "Buy pants", date: "May 20, 2020", amount: 210, isIncome: false),
-        Transaction(category: "Clothing", note: "Buy pants", date: "May 20, 2020", amount: 210, isIncome: false),
-        Transaction(category: "Other", note: "Bitcoin", date: "May 20, 2020", amount: 1010, isIncome: true)
-        
-    ]
+    @State var transactions: [Transaction] = [Transaction]()
     
     var body: some View {
         ZStack {
@@ -93,6 +87,13 @@ struct HistoryView: View {
                 .animation(.default)
             
         }.edgesIgnoringSafeArea(.all)
+            .onAppear {
+                DataService.instance.getAllTransactions(uid: Auth.auth().currentUser!.uid) { (success) in
+                    if success {
+                        self.transactions = DataService.instance.transactions
+                    }
+                }
+        }
     
     }
 }
