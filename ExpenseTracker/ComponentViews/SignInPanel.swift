@@ -36,7 +36,7 @@ struct SignInPanel: View {
                         .foregroundColor(.gray)
                     Spacer()
                     Text("\(self.emailErr)")
-                    .font(.system(size: gr.size.width*0.04, weight: .light, design: .default))
+                    .font(.system(size: gr.size.width*0.03, weight: .light, design: .default))
                     .foregroundColor(.red)
                 }
                 
@@ -58,7 +58,7 @@ struct SignInPanel: View {
                             .foregroundColor(.gray)
                         Spacer()
                         Text("\(self.passwordErr)")
-                        .font(.system(size: gr.size.width*0.04, weight: .light, design: .default))
+                        .font(.system(size: gr.size.width*0.03, weight: .light, design: .default))
                         .foregroundColor(.red)
                     }
                     
