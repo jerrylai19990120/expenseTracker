@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct AddActivityView: View {
     
@@ -22,8 +23,6 @@ struct AddActivityView: View {
     
     var formatter = DateFormatter()
     
-    @State var dateString = ""
-    
     @State var expanded = false
     
     @State var selection = "Food & Drinks"
@@ -31,6 +30,16 @@ struct AddActivityView: View {
     @State var selectionImage = "grocery"
     
     @State var selectionColor = "groceryColor"
+    
+    @State var isIncome = true
+    
+    @State var err = false
+    
+    init(gr: GeometryProxy, popup: Binding<Bool>) {
+        self.gr = gr
+        self._popup = popup
+        self.formatter.dateFormat = "MMM d, y"
+    }
     
     var body: some View {
         
@@ -49,7 +58,7 @@ struct AddActivityView: View {
                     Image(systemName: "checkmark").resizable().aspectRatio(contentMode: .fit)
                         .frame(width: gr.size.width*0.05, height: gr.size.width*0.05)
                         .onTapGesture {
-                            self.popup.toggle()
+                            self.uploadTransactionData()
                     }
                 }.padding()
                 
@@ -64,10 +73,36 @@ struct AddActivityView: View {
                                 .cornerRadius(gr.size.width*0.06)
                             Spacer()
                             TextField("Enter amount", text: $amount)
+                                .padding()
                                 .keyboardType(.numberPad)
                                 .font(.system(size: gr.size.width*0.08, weight: .medium, design: .rounded))
+                                .overlay(RoundedRectangle(cornerRadius: 10).stroke(err ? Color.red : Color.white, lineWidth: 1))
                         }.padding()
                         
+                        Toggle(isOn: $isIncome) {
+                            
+                            HStack {
+                                if isIncome {
+                                    Image(systemName: "dollarsign.circle.fill")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: gr.size.width*0.06)
+                                        .foregroundColor(.yellow)
+                                    
+                                    Text("Income").font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
+                                } else {
+                                    Image(systemName: "cart.fill")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: gr.size.width*0.06)
+                                        .foregroundColor(.green)
+                                        
+                                    Text("Expense").font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
+                                }
+                                
+                            }
+                            
+                        }.padding()
                         HStack(spacing: gr.size.width*0.06) {
                             Image("\(self.selectionImage)").resizable()
                                 .aspectRatio(contentMode: .fit)
@@ -267,7 +302,7 @@ struct AddActivityView: View {
                                         .background(Color("bgPurple"))
                                         .cornerRadius(gr.size.width*0.09)
                                 Spacer()
-                                Text("\(self.formatter.string(from: self.transactionDate))").foregroundColor(.black).font(.system(size: gr.size.width*0.046, weight: .bold, design: .default))
+                                Text("\(self.formatter.string(from: self.transactionDate))").foregroundColor(.black).font(.system(size: gr.size.width*0.046, weight: .semibold, design: .default))
                             }
                             
                             HStack {
@@ -308,11 +343,45 @@ struct AddActivityView: View {
             .background(Color.white)
             .cornerRadius(30)
                 .shadow(color: .gray, radius: 6, y: -6)
-                .onAppear {
-                    self.formatter.dateFormat = "MMM d, y"
-                    self.dateString = self.formatter.string(from: self.transactionDate)
-        }
         //vstack
+    }
+    
+    //create proper format of the data
+    func createTransactionData() -> [String:Any] {
+        
+        if self.amount == "" {
+            let transactionData = [
+            "category": self.selection,
+            "note": self.note,
+            "date": self.formatter.string(from: transactionDate),
+            "amount": 0,
+            "isIncome": self.isIncome
+            ] as [String:Any]
+            return transactionData
+        } else {
+            let transactionData = [
+                "category": self.selection,
+                "note": self.note,
+                "date": self.formatter.string(from: transactionDate),
+                "amount": Int(self.amount)!,
+                "isIncome": self.isIncome
+                ] as [String:Any]
+            return transactionData
+        }
+        
+    }
+    
+    //send out the data to firebase database
+    func uploadTransactionData() {
+        let data = createTransactionData()
+        if self.amount == "" {
+            self.err = true
+        } else {
+            DataService.instance.createTransaction(uid: Auth.auth().currentUser!.uid, transactionData: data)
+            
+            self.popup.toggle()
+        }
+        
     }
 }
 

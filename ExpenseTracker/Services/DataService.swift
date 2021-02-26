@@ -23,10 +23,12 @@ class DataService {
         return _REF_USERS
     }
     
+    //create an user in the database
     func createUser(uid: String, userData: Dictionary<String, Any>){
         REF_USERS.child(uid).updateChildValues(userData)
     }
     
+    //retrieve an user information based on uid
     func retrieveUser(uid: String, completion: @escaping (_ status: Bool)->()) {
         
         REF_USERS.child(uid).getData { (error, snapshot) in
@@ -38,6 +40,13 @@ class DataService {
                 completion(false)
             }
         }
+    }
+    
+    //create and add a transaction into an user
+    func createTransaction(uid: String, transactionData: [String: Any]){
+        
+        REF_USERS.child(uid).updateChildValues(transactionData)
+        
     }
     
 }
