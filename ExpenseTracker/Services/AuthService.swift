@@ -25,6 +25,13 @@ class AuthService {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             
             if error == nil {
+                let providerID = result?.user.providerID
+                let uid = result?.user.uid
+                let email = result?.user.email!
+                
+                let userData = ["providerID": providerID, "email": email]
+                
+                DataService.instance.createUser(uid: uid!, userData: userData)
                 completion(true)
             } else {
                 let description = error!.localizedDescription

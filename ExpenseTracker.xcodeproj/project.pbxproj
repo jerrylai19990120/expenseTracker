@@ -29,6 +29,7 @@
 		92DC9A3F25D86C0500DB4246 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92DC9A3E25D86C0500DB4246 /* Assets.xcassets */; };
 		92DC9A4225D86C0500DB4246 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92DC9A4125D86C0500DB4246 /* Preview Assets.xcassets */; };
 		92DC9A4525D86C0500DB4246 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92DC9A4325D86C0500DB4246 /* LaunchScreen.storyboard */; };
+		92F1692025E96464006C7E20 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1691F25E96464006C7E20 /* DataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		92DC9A4125D86C0500DB4246 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		92DC9A4425D86C0500DB4246 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92DC9A4625D86C0500DB4246 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92F1691F25E96464006C7E20 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		CDEA3ABFDDFE048B019ACD32 /* Pods_ExpenseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpenseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				924054B125E8AA010025A9AC /* AuthService.swift */,
+				92F1691F25E96464006C7E20 /* DataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				92DC9A3D25D86C0200DB4246 /* WelcomeView.swift in Sources */,
 				9203507625DDBD2A0050563E /* AddActivityView.swift in Sources */,
 				924054B225E8AA010025A9AC /* AuthService.swift in Sources */,
+				92F1692025E96464006C7E20 /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
