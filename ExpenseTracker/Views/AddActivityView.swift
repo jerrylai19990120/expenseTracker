@@ -24,6 +24,8 @@ struct AddActivityView: View {
     
     @State var dateString = ""
     
+    @State var expanded = true
+    
     var body: some View {
         
             VStack {
@@ -52,17 +54,162 @@ struct AddActivityView: View {
                         .font(.system(size: gr.size.width*0.08, weight: .medium, design: .rounded))
                 }.padding()
                 
-                HStack {
+                HStack(spacing: gr.size.width*0.06) {
                     Image("grocery").resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: gr.size.width*0.06, height: gr.size.width*0.06)
                         .padding()
                         .background(Color("groceryColor"))
                         .cornerRadius(gr.size.width*0.09)
-                    Spacer()
-                    TextField("Enter amount", text: $amount)
-                        .keyboardType(.numberPad)
-                        .font(.system(size: gr.size.width*0.07, weight: .medium, design: .rounded))
+                    
+                    VStack {
+                        HStack {
+                            Text("Food & Drinks")
+                                .foregroundColor(.black)
+                                .font(.system(size: gr.size.width*0.06, weight: .semibold, design: .rounded))
+                            Spacer()
+                            Image(systemName: expanded ? "chevron.down" : "chevron.right").resizable().renderingMode(.original).aspectRatio(contentMode: .fit)
+                                .frame(width: gr.size.width*0.028)
+                        }.onTapGesture {
+                            self.expanded.toggle()
+                        }
+                        
+                        if expanded {
+                            Button(action: {
+                                
+                            }) {
+                                HStack {
+                                    Image("clothing").resizable().renderingMode(.original)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: gr.size.width*0.04, height: gr.size.width*0.04)
+                                        .padding(.all, gr.size.width*0.03)
+                                    .background(Color("clothingColor"))
+                                    .cornerRadius(gr.size.width*0.09)
+                                    Spacer()
+                                    Text("Clothing")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: gr.size.width*0.05, weight: .semibold, design: .rounded))
+                                    Spacer()
+                                }
+                            }
+                            
+                            Button(action: {
+                                
+                            }) {
+                                HStack {
+                                    Image("transportation").resizable()
+                                        .renderingMode(.original)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: gr.size.width*0.04, height: gr.size.width*0.04)
+                                        .padding(.all, gr.size.width*0.03)
+                                    .background(Color("transportationColor"))
+                                    .cornerRadius(gr.size.width*0.09)
+                                    Spacer()
+                                    Text("Transportation")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: gr.size.width*0.05, weight: .semibold, design: .rounded))
+                                    Spacer()
+                                }
+                            }
+                            
+                            Button(action: {
+                                
+                            }) {
+                                HStack {
+                                    Image("entertainment").resizable()
+                                        .renderingMode(.original)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: gr.size.width*0.04, height: gr.size.width*0.04)
+                                        .padding(.all, gr.size.width*0.03)
+                                    .background(Color("entertainmentColor"))
+                                    .cornerRadius(gr.size.width*0.09)
+                                    Spacer()
+                                    Text("Entertainment")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: gr.size.width*0.05, weight: .semibold, design: .rounded))
+                                    Spacer()
+                                }
+                            }
+                            
+                            Button(action: {
+                                
+                            }) {
+                                HStack {
+                                    Image("grocery").resizable()
+                                        .renderingMode(.original)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: gr.size.width*0.04, height: gr.size.width*0.04)
+                                        .padding(.all, gr.size.width*0.03)
+                                    .background(Color("groceryColor"))
+                                    .cornerRadius(gr.size.width*0.09)
+                                    Spacer()
+                                    Text("Food & Drinks")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: gr.size.width*0.05, weight: .semibold, design: .rounded))
+                                    Spacer()
+                                }
+                            }
+                            
+                            Button(action: {
+                                
+                            }) {
+                                HStack {
+                                    Image("income").resizable()
+                                        .renderingMode(.original)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: gr.size.width*0.04, height: gr.size.width*0.04)
+                                        .padding(.all, gr.size.width*0.03)
+                                    .background(Color("incomeColor"))
+                                    .cornerRadius(gr.size.width*0.09)
+                                    Spacer()
+                                    Text("Income")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: gr.size.width*0.05, weight: .semibold, design: .rounded))
+                                    Spacer()
+                                }
+                            }
+                            
+                            Button(action: {
+                                
+                            }) {
+                                HStack {
+                                    Image("medical").resizable()
+                                        .renderingMode(.original)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: gr.size.width*0.04, height: gr.size.width*0.04)
+                                        .padding(.all, gr.size.width*0.03)
+                                    .background(Color("medicalColor"))
+                                    .cornerRadius(gr.size.width*0.09)
+                                    Spacer()
+                                    Text("Medical")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: gr.size.width*0.05, weight: .semibold, design: .rounded))
+                                    Spacer()
+                                }
+                            }
+                            
+                            Button(action: {
+                                
+                            }) {
+                                HStack {
+                                    
+                                    Image("other").resizable()
+                                        .renderingMode(.original)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: gr.size.width*0.04, height: gr.size.width*0.04)
+                                        .padding(.all, gr.size.width*0.03)
+                                    .background(Color("otherColor"))
+                                    .cornerRadius(gr.size.width*0.09)
+                                    Spacer()
+                                    Text("Other")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: gr.size.width*0.05, weight: .semibold, design: .rounded))
+                                    Spacer()
+                                }
+                            }
+                        }
+                    }.animation(.spring())
+                    
                 }.padding()
                 
                 VStack(alignment: .leading) {
@@ -75,7 +222,7 @@ struct AddActivityView: View {
                             .background(Color("bgPurple"))
                             .cornerRadius(gr.size.width*0.09)
                         Spacer()
-                        Text("\(dateString)")
+                        Text("\(self.formatter.string(from: self.transactionDate))")
                     }
                     
                     DatePicker("Transaction Date:", selection: $transactionDate, displayedComponents: .date).labelsHidden()
