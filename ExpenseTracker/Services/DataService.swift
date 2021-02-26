@@ -44,9 +44,13 @@ class DataService {
     
     //create and add a transaction into an user
     func createTransaction(uid: String, transactionData: [String: Any]){
-        
-        REF_USERS.child(uid).updateChildValues(transactionData)
-        
+        let uuid = UUID().uuidString
+        REF_USERS.child(uid).child("transactions/\(uuid)").setValue(transactionData)
+    }
+    
+    //retrieve all transactions
+    func getAllTransactions(uid: String, completion: @escaping (_ status: Bool)->()){
+        //REF_USERS.child(uid)
     }
     
 }
