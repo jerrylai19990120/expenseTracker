@@ -78,7 +78,7 @@ struct HistoryView: View {
             
             VStack {
                 Spacer()
-                AddActivityView(gr: gr, popup: $popup)
+                AddActivityView(gr: gr, popup: $popup, transactionDate: Date(), formatter: DateFormatter())
             }.offset(y: popup ? gr.size.height*0.03 : gr.size.height + 88)
                 .animation(.default)
             

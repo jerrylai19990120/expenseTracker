@@ -267,7 +267,7 @@ struct AddActivityView: View {
                                         .background(Color("bgPurple"))
                                         .cornerRadius(gr.size.width*0.09)
                                 Spacer()
-                                Text("\(self.formatter.string(from: self.transactionDate))").bold()
+                                Text("\(self.formatter.string(from: self.transactionDate))").foregroundColor(.black).font(.system(size: gr.size.width*0.046, weight: .bold, design: .default))
                             }
                             
                             HStack {
