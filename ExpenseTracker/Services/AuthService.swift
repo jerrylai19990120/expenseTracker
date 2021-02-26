@@ -7,12 +7,34 @@
 //
 
 import Foundation
+import Firebase
 
 class AuthService {
     
     static let instance = AuthService()
     
     
+    func createUser(email: String, password: String, completion: @escaping (_ status: Bool)->Void){
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            
+            if error == nil {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
     
+    func loginUser(email: String, password: String, completion: @escaping (_ status: Bool)->()){
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            if error == nil {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
     
 }

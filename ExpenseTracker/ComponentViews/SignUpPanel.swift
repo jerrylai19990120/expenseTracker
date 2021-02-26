@@ -17,6 +17,8 @@ struct SignUpPanel: View {
     
     @Binding var isSignUp: Bool
     
+    @State var signUpSuccess = false
+    
     var gr: GeometryProxy
     
     var body: some View {
@@ -29,7 +31,7 @@ struct SignUpPanel: View {
                 Text("Username")
                     .font(.system(size: gr.size.width*0.04, weight: .medium, design: .default))
                     .foregroundColor(.gray)
-                TextField("Username", text: $email)
+                TextField("Username", text: $username)
                     .textFieldStyle(PlainTextFieldStyle())
                     .frame(height: gr.size.height*0.02)
                     .padding()
@@ -63,7 +65,7 @@ struct SignUpPanel: View {
                     Text("Confirm Password")
                         .font(.system(size: gr.size.width*0.04, weight: .medium, design: .default))
                         .foregroundColor(.gray)
-                    SecureField("confirm password", text: $password)
+                    SecureField("confirm password", text: $confirmPassword)
                     .textFieldStyle(PlainTextFieldStyle())
                     .frame(height: gr.size.height*0.02)
                     .padding()
@@ -74,9 +76,14 @@ struct SignUpPanel: View {
                 
                 VStack {
                     
-                    Button(action: {}){
-                        
-                        NavigationLink(destination: TabNavView(gr: gr)){
+                    NavigationLink(destination: TabNavView(gr: gr), isActive: $signUpSuccess){
+                        Button(action: {
+                            AuthService.instance.createUser(email: self.email, password: self.password) { (success) in
+                                if success {
+                                    self.signUpSuccess = true
+                                }
+                            }
+                        }){
                             
                             Text("Sign Up")
                                 .frame(width: gr.size.width*0.8, height: gr.size.height*0.07)
@@ -84,10 +91,11 @@ struct SignUpPanel: View {
                                 .foregroundColor(.white)
                                 .font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
                                 .cornerRadius(10)
-                        }
-                        
-                        
-                    }.padding()
+                            
+                            
+                        }.padding()
+                    }
+                    
                     
                     HStack {
                         Text("I'm already a member.")

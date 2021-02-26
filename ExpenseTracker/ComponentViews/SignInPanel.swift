@@ -15,6 +15,8 @@ struct SignInPanel: View {
     
     @Binding var isSignUp: Bool
     
+    @State var isLoggedIn = false
+    
     var gr: GeometryProxy
     
     var body: some View {
@@ -60,9 +62,15 @@ struct SignInPanel: View {
                 
                 VStack(spacing: gr.size.height*0.06) {
                     
-                    Button(action: {}){
+                    NavigationLink(destination: TabNavView(gr: gr), isActive: $isLoggedIn){
                         
-                        NavigationLink(destination: TabNavView(gr: gr)){
+                        Button(action: {
+                            AuthService.instance.loginUser(email: self.email, password: self.password) { (success) in
+                                if success {
+                                    self.isLoggedIn = true
+                                }
+                            }
+                        }){
                             
                             Text("Sign In")
                                 .padding()
@@ -71,10 +79,10 @@ struct SignInPanel: View {
                                 .foregroundColor(.white)
                                 .font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
                                 .cornerRadius(10)
+                            
                         }
-                        
-                        
                     }
+                    
                     
                     HStack {
                         Text("I'm a new user.")
