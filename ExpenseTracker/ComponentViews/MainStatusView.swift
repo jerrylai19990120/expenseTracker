@@ -12,6 +12,21 @@ struct MainStatusView: View {
     
     var gr: GeometryProxy
     
+    let formatter = DateFormatter()
+    
+    @Binding var balance: Int
+    @Binding var income: Int
+    @Binding var expense: Int
+    
+    init(gr: GeometryProxy, balance: Binding<Int>, income: Binding<Int>, expense: Binding<Int>) {
+        self.gr = gr
+        self.formatter.dateFormat = "MMMM y"
+        self._balance = balance
+        self._expense = expense
+        self._income = income
+    }
+    
+
     var body: some View {
         VStack(alignment: .center) {
             
@@ -23,11 +38,11 @@ struct MainStatusView: View {
                     Text("$")
                         .font(.system(size: gr.size.width*0.09, weight: .bold, design: .default))
                         .foregroundColor(Color.white)
-                    Text("32,465")
+                    Text("\(balance)")
                         .font(.system(size: gr.size.width*0.12, weight: .bold, design: .default))
                         .foregroundColor(Color.white)
                 }
-                Text("September 2020")
+                Text("\(formatter.string(from: Date()))")
                     .font(.system(size: gr.size.width*0.05, weight: .light, design: .default))
                     .foregroundColor(Color.white)
             }
@@ -45,7 +60,7 @@ struct MainStatusView: View {
                         Text("INCOME")
                             .font(.system(size: gr.size.width*0.044, weight: .light, design: .default))
                             .foregroundColor(Color.white)
-                        Text("$3000")
+                        Text("$\(income)")
                             .font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
                             .foregroundColor(Color.white)
                     }
@@ -62,7 +77,7 @@ struct MainStatusView: View {
                         Text("EXPENSE")
                             .font(.system(size: gr.size.width*0.044, weight: .light, design: .default))
                             .foregroundColor(Color.white)
-                        Text("$3000")
+                        Text("$\(expense)")
                             .font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
                             .foregroundColor(Color.white)
                     }
@@ -70,7 +85,7 @@ struct MainStatusView: View {
                 
             }
         }.padding()
-        .frame(width: gr.size.width)
+            .frame(width: gr.size.width)
         
             
     }
@@ -80,7 +95,7 @@ struct MainStatusView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader {
             gr in
-            MainStatusView(gr: gr)
+            MainStatusView(gr: gr, balance: Binding.constant(0), income: Binding.constant(0), expense: Binding.constant(0))
         }
         
     }

@@ -20,7 +20,7 @@ class AuthService {
                                // 2 for password issue
                                // 3 for email already in used
     
-    func createUser(email: String, password: String, completion: @escaping (_ status: Bool)->Void){
+    func createUser(email: String, password: String, username: String, completion: @escaping (_ status: Bool)->Void){
         
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             
@@ -29,9 +29,10 @@ class AuthService {
                 let uid = result?.user.uid
                 let email = result?.user.email!
                 
-                let userData = ["providerID": providerID, "email": email]
+                let userData = ["providerID": providerID, "email": email, "balance": 0, "income": 0, "expense": 0, "username": username] as [String : Any]
                 
                 DataService.instance.createUser(uid: uid!, userData: userData)
+                
                 completion(true)
             } else {
                 let description = error!.localizedDescription

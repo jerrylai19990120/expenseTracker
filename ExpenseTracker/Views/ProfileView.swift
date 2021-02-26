@@ -7,10 +7,14 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ProfileView: View {
     
     var gr: GeometryProxy
+    
+    @State var username = "User"
+    @State var balance = -1
     
     var body: some View {
         ZStack {
@@ -52,7 +56,7 @@ struct ProfileView: View {
                     .foregroundColor(.white)
                     .font(.system(size: gr.size.height*0.03, weight: .thin, design: .default))
                     
-                    Text("User")
+                    Text("\(username)")
                     .foregroundColor(.white)
                     .font(.system(size: gr.size.height*0.035, weight: .medium, design: .default))
                 }.padding()
@@ -60,7 +64,7 @@ struct ProfileView: View {
                 Spacer()
                 
                 VStack {
-                    Text("$ 39,000")
+                    Text("$ \(balance)")
                         .font(.system(size: gr.size.height*0.054, weight: .medium, design: .rounded))
                     Text("CURRENT BALANCE")
                     .font(.system(size: gr.size.height*0.028, weight: .medium, design: .rounded))
@@ -78,12 +82,16 @@ struct ProfileView: View {
                         ExpenseItem(gr: gr)
                         ExpenseItem(gr: gr)
                         ExpenseItem(gr: gr)
-                        ExpenseItem(gr: gr)
-                        ExpenseItem(gr: gr)
-                        ExpenseItem(gr: gr)
                     }.padding()
                 }
                 
+            }.onAppear {
+                DataService.instance.retrieveUser(uid: Auth.auth().currentUser!.uid) { (success) in
+                    if success {
+                        self.balance = DataService.instance.user!.balance
+                        self.username = DataService.instance.user!.username
+                    }
+                }
             }
             
         }.edgesIgnoringSafeArea(.all)

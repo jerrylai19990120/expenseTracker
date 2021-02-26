@@ -30,6 +30,8 @@
 		92DC9A4225D86C0500DB4246 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92DC9A4125D86C0500DB4246 /* Preview Assets.xcassets */; };
 		92DC9A4525D86C0500DB4246 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92DC9A4325D86C0500DB4246 /* LaunchScreen.storyboard */; };
 		92F1692025E96464006C7E20 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1691F25E96464006C7E20 /* DataService.swift */; };
+		92F1693125E97E34006C7E20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1693025E97E34006C7E20 /* User.swift */; };
+		92F1693325E97E49006C7E20 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1693225E97E49006C7E20 /* Transaction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		92DC9A4425D86C0500DB4246 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92DC9A4625D86C0500DB4246 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92F1691F25E96464006C7E20 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		92F1693025E97E34006C7E20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		92F1693225E97E49006C7E20 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		CDEA3ABFDDFE048B019ACD32 /* Pods_ExpenseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpenseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -115,6 +119,7 @@
 		92DC9A3725D86C0200DB4246 /* ExpenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				92F1692125E96D3F006C7E20 /* Models */,
 				9203507225DDBCDD0050563E /* ComponentViews */,
 				92DC9A4D25D86FD700DB4246 /* Services */,
 				92DC9A4C25D86FCD00DB4246 /* Views */,
@@ -159,6 +164,15 @@
 				92F1691F25E96464006C7E20 /* DataService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		92F1692125E96D3F006C7E20 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				92F1693025E97E34006C7E20 /* User.swift */,
+				92F1693225E97E49006C7E20 /* Transaction.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		9DEAB784BFCDB36B6C0072A7 /* Pods */ = {
@@ -303,9 +317,11 @@
 				922570C825D98A6C00367D6C /* SignInView.swift in Sources */,
 				922079CA25DF1DFF00ED7579 /* HistoryItem.swift in Sources */,
 				9203507C25DDD3CB0050563E /* SignInPanel.swift in Sources */,
+				92F1693325E97E49006C7E20 /* Transaction.swift in Sources */,
 				9203507425DDBD0B0050563E /* ChartsView.swift in Sources */,
 				9203506725DD92280050563E /* HomeView.swift in Sources */,
 				92DC9A3D25D86C0200DB4246 /* WelcomeView.swift in Sources */,
+				92F1693125E97E34006C7E20 /* User.swift in Sources */,
 				9203507625DDBD2A0050563E /* AddActivityView.swift in Sources */,
 				924054B225E8AA010025A9AC /* AuthService.swift in Sources */,
 				92F1692025E96464006C7E20 /* DataService.swift in Sources */,

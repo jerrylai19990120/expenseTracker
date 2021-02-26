@@ -121,7 +121,7 @@ struct SignUpPanel: View {
                             self.passwordErr = ""
                             self.confirmPasswordErr = ""
                             if self.validateInputs() {
-                                AuthService.instance.createUser(email: self.email, password: self.password) { (success) in
+                                AuthService.instance.createUser(email: self.email, password: self.password, username: self.username) { (success) in
                                     
                                     if success {
                                         self.signUpSuccess = true

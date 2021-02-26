@@ -7,10 +7,21 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct HomeView: View {
     
     var gr: GeometryProxy
+    
+    @State var balance: Int = -1
+    @State var income: Int = -1
+    @State var expense: Int = -1
+    
+    init(gr: GeometryProxy) {
+        self.gr = gr
+    }
+    
+    
     
     var body: some View {
         
@@ -26,7 +37,7 @@ struct HomeView: View {
             VStack(spacing: 0) {
                 Spacer()
                 
-                MainStatusView(gr: gr)
+                MainStatusView(gr: gr, balance: $balance, income: $income, expense: $expense)
                     
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
@@ -40,7 +51,17 @@ struct HomeView: View {
                     
                 }
                 
-            }.padding(.top)
+                }.padding(.top)
+                .onAppear {
+                    DataService.instance.retrieveUser(uid: Auth.auth().currentUser!.uid) { (success) in
+                        if success {
+                            self.balance = DataService.instance.user!.balance
+                            self.income = DataService.instance.user!.income
+                            self.expense = DataService.instance.user!.expense
+                            
+                        }
+                    }
+            }
             
             
         }.edgesIgnoringSafeArea(.all)

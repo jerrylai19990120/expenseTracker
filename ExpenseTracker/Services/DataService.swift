@@ -15,6 +15,8 @@ class DataService {
     
     static let instance = DataService()
     
+    var user: User?
+    
     private var _REF_USERS = DATABASE_REF.child("users")
     
     var REF_USERS: DatabaseReference {
@@ -23,6 +25,19 @@ class DataService {
     
     func createUser(uid: String, userData: Dictionary<String, Any>){
         REF_USERS.child(uid).updateChildValues(userData)
+    }
+    
+    func retrieveUser(uid: String, completion: @escaping (_ status: Bool)->()) {
+        
+        REF_USERS.child(uid).getData { (error, snapshot) in
+            if error == nil {
+                let userInfo = snapshot.value as! Dictionary<String, Any>
+                self.user = User(username: userInfo["username"] as! String, email: userInfo["email"] as! String, balance: userInfo["balance"] as! Int, income: userInfo["income"] as! Int, expense: userInfo["expense"] as! Int)
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
     }
     
 }
