@@ -68,15 +68,21 @@ struct AddActivityView: View {
                                 .foregroundColor(.black)
                                 .font(.system(size: gr.size.width*0.06, weight: .semibold, design: .rounded))
                             Spacer()
-                            Image(systemName: expanded ? "chevron.down" : "chevron.right").resizable().renderingMode(.original).aspectRatio(contentMode: .fit)
-                                .frame(width: gr.size.width*0.028)
+                            if expanded {
+                                Image(systemName: "chevron.down").resizable().renderingMode(.original).aspectRatio(contentMode: .fit)
+                                    .frame(width: gr.size.width*0.054)
+                            } else {
+                                Image(systemName: "chevron.right").resizable().renderingMode(.original).aspectRatio(contentMode: .fit)
+                                    .frame(width: gr.size.width*0.028)
+                            }
+                            
                         }.onTapGesture {
                             self.expanded.toggle()
                         }
                         
                         if expanded {
                             Button(action: {
-                                
+                                self.expanded.toggle()
                             }) {
                                 HStack {
                                     Image("clothing").resizable().renderingMode(.original)
@@ -94,7 +100,7 @@ struct AddActivityView: View {
                             }
                             
                             Button(action: {
-                                
+                                self.expanded.toggle()
                             }) {
                                 HStack {
                                     Image("transportation").resizable()
@@ -113,7 +119,7 @@ struct AddActivityView: View {
                             }
                             
                             Button(action: {
-                                
+                                self.expanded.toggle()
                             }) {
                                 HStack {
                                     Image("entertainment").resizable()
@@ -132,7 +138,7 @@ struct AddActivityView: View {
                             }
                             
                             Button(action: {
-                                
+                                self.expanded.toggle()
                             }) {
                                 HStack {
                                     Image("grocery").resizable()
@@ -151,7 +157,7 @@ struct AddActivityView: View {
                             }
                             
                             Button(action: {
-                                
+                                self.expanded.toggle()
                             }) {
                                 HStack {
                                     Image("income").resizable()
@@ -170,7 +176,7 @@ struct AddActivityView: View {
                             }
                             
                             Button(action: {
-                                
+                                self.expanded.toggle()
                             }) {
                                 HStack {
                                     Image("medical").resizable()
@@ -189,7 +195,7 @@ struct AddActivityView: View {
                             }
                             
                             Button(action: {
-                                
+                                self.expanded.toggle()
                             }) {
                                 HStack {
                                     
