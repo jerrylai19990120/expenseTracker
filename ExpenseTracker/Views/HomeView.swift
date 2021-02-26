@@ -17,7 +17,7 @@ struct HomeView: View {
     @State var income: Int = -1
     @State var expense: Int = -1
     
-    @State var recentTransactions = [Transaction]()
+    @State var recentTransactions: [Transaction] = [Transaction]()
     
     init(gr: GeometryProxy) {
         self.gr = gr
@@ -43,11 +43,11 @@ struct HomeView: View {
                     
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
-                        ExpenseItem(gr: gr)
-                        ExpenseItem(gr: gr)
-                        ExpenseItem(gr: gr)
-                        ExpenseItem(gr: gr)
-                        ExpenseItem(gr: gr)
+                        
+                        ForEach(recentTransactions, id: \.self){
+                            item in
+                            ExpenseItem(gr: self.gr)
+                        }
                         
                     }.padding().padding(.bottom, gr.size.height*0.1)
                     
@@ -67,6 +67,13 @@ struct HomeView: View {
             
             
         }.edgesIgnoringSafeArea(.all)
+            .onAppear {
+                DataService.instance.getAllTransactions(uid: Auth.auth().currentUser!.uid) { (success) in
+                    if success {
+                        self.recentTransactions = DataService.instance.recentTransactions
+                    }
+                }
+        }
     }
 }
 

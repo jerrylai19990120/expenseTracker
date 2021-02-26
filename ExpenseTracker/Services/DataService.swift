@@ -22,8 +22,11 @@ class DataService {
     var REF_USERS: DatabaseReference {
         return _REF_USERS
     }
-    
+    //all transactions
     var transactions = [Transaction]()
+    
+    //recent transactions
+    var recentTransactions = [Transaction]()
     
     //create an user in the database
     func createUser(uid: String, userData: Dictionary<String, Any>){
@@ -54,6 +57,7 @@ class DataService {
     func getAllTransactions(uid: String, completion: @escaping (_ status: Bool)->()){
         
         transactions = []
+        recentTransactions = []
         
         REF_USERS.child(uid).child("transactions").observeSingleEvent(of: .value) { (snapshot) in
             
@@ -62,16 +66,23 @@ class DataService {
                 return
             }
             
+            var count = 1
+            
             for item in allTransactions {
                 let transactionInfo = item.value as! [String:Any]
                 
                 let transaction = Transaction(category: transactionInfo["category"] as! String, note: transactionInfo["note"] as! String, date: transactionInfo["date"] as! String, amount: transactionInfo["amount"] as! Int, isIncome: transactionInfo["isIncome"] as! Bool)
                 
+                if count <= 5 {
+                    self.recentTransactions.append(transaction)
+                }
                 self.transactions.append(transaction)
+                count += 1
             }
             
             completion(true)
         }
     }
+    
     
 }

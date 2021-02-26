@@ -16,6 +16,8 @@ struct ProfileView: View {
     @State var username = "User"
     @State var balance = -1
     
+    @State var recentTransactions: [Transaction] = [Transaction]()
+    
     var body: some View {
         ZStack {
             VStack {
@@ -77,11 +79,10 @@ struct ProfileView: View {
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
-                        ExpenseItem(gr: gr)
-                        ExpenseItem(gr: gr)
-                        ExpenseItem(gr: gr)
-                        ExpenseItem(gr: gr)
-                        ExpenseItem(gr: gr)
+                        ForEach(recentTransactions, id: \.self){
+                            item in
+                            ExpenseItem(gr: self.gr)
+                        }
                     }.padding()
                 }
                 
@@ -95,6 +96,13 @@ struct ProfileView: View {
             }
             
         }.edgesIgnoringSafeArea(.all)
+            .onAppear {
+                DataService.instance.getAllTransactions(uid: Auth.auth().currentUser!.uid) { (success) in
+                    if success {
+                        self.recentTransactions = DataService.instance.recentTransactions
+                    }
+                }
+        }
     }
 }
 
