@@ -32,6 +32,7 @@
 		92F1692025E96464006C7E20 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1691F25E96464006C7E20 /* DataService.swift */; };
 		92F1693125E97E34006C7E20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1693025E97E34006C7E20 /* User.swift */; };
 		92F1693325E97E49006C7E20 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1693225E97E49006C7E20 /* Transaction.swift */; };
+		92F1693525E98E7E006C7E20 /* EmptyTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F1693425E98E7E006C7E20 /* EmptyTransactionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		92F1691F25E96464006C7E20 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		92F1693025E97E34006C7E20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		92F1693225E97E49006C7E20 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		92F1693425E98E7E006C7E20 /* EmptyTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTransactionView.swift; sourceTree = "<group>"; };
 		CDEA3ABFDDFE048B019ACD32 /* Pods_ExpenseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpenseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 				9203507B25DDD3CB0050563E /* SignInPanel.swift */,
 				922079C925DF1DFF00ED7579 /* HistoryItem.swift */,
 				922079CE25E0719700ED7579 /* SignUpPanel.swift */,
+				92F1693425E98E7E006C7E20 /* EmptyTransactionView.swift */,
 			);
 			path = ComponentViews;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				922079CF25E0719700ED7579 /* SignUpPanel.swift in Sources */,
 				9203507125DDBCBF0050563E /* ProfileView.swift in Sources */,
 				92DC9A3925D86C0200DB4246 /* AppDelegate.swift in Sources */,
+				92F1693525E98E7E006C7E20 /* EmptyTransactionView.swift in Sources */,
 				9203506F25DDA7820050563E /* TabNavView.swift in Sources */,
 				9203506B25DD9F0E0050563E /* ExpenseItem.swift in Sources */,
 				92DC9A3B25D86C0200DB4246 /* SceneDelegate.swift in Sources */,

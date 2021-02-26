@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+
+struct Transaction: Hashable {
+    var category: String
+    var note: String
+    var date: String
+    var amount: Int
+    var isIncome: Bool
+}

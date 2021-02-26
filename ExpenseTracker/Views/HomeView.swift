@@ -17,6 +17,8 @@ struct HomeView: View {
     @State var income: Int = -1
     @State var expense: Int = -1
     
+    @State var recentTransactions = [Transaction]()
+    
     init(gr: GeometryProxy) {
         self.gr = gr
     }

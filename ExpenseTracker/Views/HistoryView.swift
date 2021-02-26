@@ -16,6 +16,15 @@ struct HistoryView: View {
     
     @State var popup = false
     
+    @State var transactions = [
+        Transaction(category: "Food & Drinks", note: "Buy KFC", date: "May 20, 2020", amount: 20, isIncome: true),
+        
+        Transaction(category: "Clothing", note: "Buy pants", date: "May 20, 2020", amount: 210, isIncome: false),
+        Transaction(category: "Clothing", note: "Buy pants", date: "May 20, 2020", amount: 210, isIncome: false),
+        Transaction(category: "Other", note: "Bitcoin", date: "May 20, 2020", amount: 1010, isIncome: true)
+        
+    ]
+    
     var body: some View {
         ZStack {
             
@@ -56,23 +65,24 @@ struct HistoryView: View {
 
                 }.padding()
                 
-                
-                
-                
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: 0) {
-                        HistoryItem(gr: gr)
-                        HistoryItem(gr: gr)
-                        HistoryItem(gr: gr)
-                        HistoryItem(gr: gr)
-                        HistoryItem(gr: gr)
-                        HistoryItem(gr: gr)
-                        HistoryItem(gr: gr)
-                        HistoryItem(gr: gr)
-                        HistoryItem(gr: gr)
-                        HistoryItem(gr: gr)
-                    }
+                if transactions.count == 0 {
+                    EmptyTransactionView(gr: gr)
+                } else {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: 0) {
+                            
+                            ForEach(transactions, id: \.self) {
+                                item in
+                                HistoryItem(gr: self.gr, date: item.date, note: item.note, amount: item.amount, isIncome: item.isIncome, category: item.category)
+                            }
+                            
+                        }
+                    }.background(Color.white)
                 }
+                
+                
+                
+                
 
             }.padding(.top, gr.size.height*0.04)
             
