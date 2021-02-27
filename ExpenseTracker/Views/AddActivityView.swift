@@ -377,7 +377,7 @@ struct AddActivityView: View {
         if self.amount == "" {
             self.err = true
         } else {
-            DataService.instance.createTransaction(uid: Auth.auth().currentUser!.uid, transactionData: data)
+            DataService.instance.createTransaction(uid: Auth.auth().currentUser!.uid, transactionData: data, isIncome: isIncome, amount: Int(amount)!)
             
             self.popup.toggle()
         }

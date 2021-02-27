@@ -36,31 +36,38 @@ class DataService {
     //retrieve an user information based on uid
     func retrieveUser(uid: String, completion: @escaping (_ status: Bool)->()) {
         
-        REF_USERS.child(uid).getData { (error, snapshot) in
-            if error == nil {
-                let userInfo = snapshot.value as! Dictionary<String, Any>
-                self.user = User(username: userInfo["username"] as! String, email: userInfo["email"] as! String, balance: userInfo["balance"] as! Int, income: userInfo["income"] as! Int, expense: userInfo["expense"] as! Int)
-                completion(true)
-            } else {
+        REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            guard let userInfo = snapshot.value as? [String:Any] else {
                 completion(false)
+                return
             }
+            self.user = User(username: userInfo["username"] as! String, email: userInfo["email"] as! String, balance: userInfo["balance"] as! Int, income: userInfo["income"] as! Int, expense: userInfo["expense"] as! Int)
+            completion(true)
         }
+        
     }
     
     //create and add a transaction into an user
-    func createTransaction(uid: String, transactionData: [String: Any]){
+    func createTransaction(uid: String, transactionData: [String: Any], isIncome: Bool, amount: Int){
         let uuid = UUID().uuidString
-        REF_USERS.child(uid).child("transactions/\(uuid)").setValue(transactionData)
+        REF_USERS.child(uid).child("transactions/\(uuid)").setValue(transactionData) { (error, dataRef) in
+            if error == nil {
+                self.updateAmount(uid: uid, isIncome: isIncome, amount: amount)
+            }
+        }
+        
     }
     
     //retrieve all transactions
     func getAllTransactions(uid: String, completion: @escaping (_ status: Bool)->()){
         
-        transactions = []
-        recentTransactions = []
+        
         
         REF_USERS.child(uid).child("transactions").observeSingleEvent(of: .value) { (snapshot) in
             
+            self.transactions = []
+            self.recentTransactions = []
+
             guard let allTransactions = snapshot.children.allObjects as? [DataSnapshot] else {
                 completion(false)
                 return
@@ -84,6 +91,37 @@ class DataService {
         }
     }
     
-    //
+    
+    //update balance and amount
+    func updateAmount(uid: String, isIncome: Bool, amount: Int) {
+        
+        REF_USERS.child(uid).getData { (error, snapshot) in
+            if error == nil {
+                let userInfo = snapshot.value as! [String:Any]
+                
+                var balance = userInfo["balance"] as! Int
+                var income = userInfo["income"] as! Int
+                var expense = userInfo["expense"] as! Int
+                
+                if isIncome {
+                    balance += amount
+                    income += amount
+                } else {
+                    balance -= amount
+                    expense += amount
+                }
+                
+                let updatedData = [
+                    "balance": balance,
+                    "income": income,
+                    "expense": expense
+                ]
+                
+                self.REF_USERS.child(uid).updateChildValues(updatedData)
+            }
+        }
+        
+    }
+    
     
 }
