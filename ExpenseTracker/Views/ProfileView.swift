@@ -20,7 +20,7 @@ struct ProfileView: View {
     
     @State var loggedOut = false
     
-    @State private var image: Image? = Image("anon")
+    @State private var avatarImg: Image? = Image("anon")
     @State private var shouldPresentImagePicker = false
     @State private var shouldPresentActionScheet = false
     @State private var shouldPresentCamera = false
@@ -62,7 +62,7 @@ struct ProfileView: View {
                 }.padding().padding(.top, gr.size.height*0.05)
                 
                 
-            image!
+            avatarImg!
                 .resizable().aspectRatio(contentMode: .fill)
                 .frame(width: gr.size.height*0.16, height: gr.size.height*0.16)
                 .clipShape(Circle())
@@ -71,7 +71,7 @@ struct ProfileView: View {
                 .shadow(color: .black, radius: 6)
                 .onTapGesture { self.shouldPresentActionScheet = true }
                     .sheet(isPresented: $shouldPresentImagePicker) {
-                        ImagePicker(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary, image: self.$image, isPresented: self.$shouldPresentImagePicker)
+                        ImagePicker(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary, image: self.$avatarImg, isPresented: self.$shouldPresentImagePicker)
                 }.actionSheet(isPresented: $shouldPresentActionScheet) { () -> ActionSheet in
                     ActionSheet(title: Text("Choose mode"), message: Text("Please choose your preferred mode to set your profile image"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {
                         self.shouldPresentImagePicker = true

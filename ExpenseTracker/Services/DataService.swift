@@ -11,6 +11,8 @@ import Firebase
 
 let DATABASE_REF = Database.database().reference()
 
+let STORAGE_REF = Storage.storage().reference()
+
 class DataService {
     
     static let instance = DataService()
@@ -19,9 +21,16 @@ class DataService {
     
     private var _REF_USERS = DATABASE_REF.child("users")
     
+    private var _REF_STORAGE_IMG = STORAGE_REF.child("AvatarImages")
+    
     var REF_USERS: DatabaseReference {
         return _REF_USERS
     }
+    
+    var REF_STORAGE_REF: StorageReference {
+        return _REF_STORAGE_IMG
+    }
+    
     //all transactions
     var transactions = [Transaction]()
     
@@ -178,4 +187,27 @@ class DataService {
     }
     
     
+    //upload avatar picture to firebase bucket
+    func uploadAvatarPicture(uid: String, imgData: Data, completion: @escaping (_ status: Bool)->()){
+        
+        let imgRef = REF_STORAGE_REF.child(uid)
+        
+        let uploadTask = imgRef.putData(imgData, metadata: nil) { (metadata, error) in
+            guard let metadata = metadata else {
+                completion(false)
+                return
+            }
+            
+            let size = metadata.size
+            
+            imgRef.downloadURL { (url, erro) in
+                guard let url = url else {
+                    completion(false)
+                    return
+                }
+                
+                print(url)
+            }
+        }
+    }
 }
