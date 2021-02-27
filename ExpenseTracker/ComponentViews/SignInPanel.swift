@@ -80,7 +80,7 @@ struct SignInPanel: View {
                 
                 VStack(spacing: gr.size.height*0.06) {
                     
-                    NavigationLink(destination: TabNavView(gr: gr), isActive: $isLoggedIn){
+                    NavigationLink(destination: TabNavView(), isActive: $isLoggedIn){
                         
                         Button(action: {
                             AuthService.instance.loginUser(email: self.email, password: self.password) { (success) in

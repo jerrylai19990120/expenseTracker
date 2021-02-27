@@ -83,7 +83,7 @@ struct HistoryView: View {
             VStack {
                 Spacer()
                 AddActivityView(gr: gr, popup: $popup)
-            }.offset(y: popup ? gr.size.height*0.03 : gr.size.height + 88)
+            }.offset(y: popup ? gr.size.height*0.018 : gr.size.height + 88)
                 .animation(.default)
             
         }.edgesIgnoringSafeArea(.all)

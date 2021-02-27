@@ -18,6 +18,8 @@ struct ProfileView: View {
     
     @State var recentTransactions: [Transaction] = [Transaction]()
     
+    @State var loggedOut = false
+    
     var body: some View {
         ZStack {
             VStack {
@@ -33,13 +35,24 @@ struct ProfileView: View {
                     Text("User Profile").foregroundColor(.white)
                         .font(.system(size: gr.size.width*0.06, weight: .bold, design: .default))
                     Spacer()
-                    NavigationLink(destination: WelcomeView().navigationBarTitle("").navigationBarHidden(true)){
-                        Image(systemName: "arrow.right.square")
-                            .resizable().aspectRatio(contentMode: .fit)
-                            .frame(width: gr.size.height*0.044, height: gr.size.height*0.044)
-                            .foregroundColor(.white)
+                    NavigationLink(destination: WelcomeView().navigationBarTitle("").navigationBarHidden(true), isActive: $loggedOut){
+                        
+                        Button(action: {
+                            do {
+                                
+                                try? Auth.auth().signOut()
+                                self.loggedOut.toggle()
+                            } catch {
+                                print(error)
+                            }
+                        }) {
+                            Image(systemName: "arrow.right.square")
+                                .resizable().aspectRatio(contentMode: .fit)
+                                .frame(width: gr.size.height*0.044, height: gr.size.height*0.044)
+                                .foregroundColor(.white)
+                        }
+                        
                     }
-                    
                     
                 }.padding().padding(.top, gr.size.height*0.05)
                 
@@ -83,7 +96,8 @@ struct ProfileView: View {
                             item in
                             ExpenseItem(gr: self.gr, date: item.date, note: item.note, amount: item.amount, isIncome: item.isIncome, category: item.category)
                         }
-                    }.padding()
+                    }.padding().padding(.bottom, gr.size.height*0.1)
+                    
                 }
                 
             }.onAppear {

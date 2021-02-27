@@ -10,53 +10,57 @@ import SwiftUI
 
 struct TabNavView: View {
     
-    var gr: GeometryProxy
-    
     var body: some View {
+        GeometryReader {
+            gr in
+            NavigationView {
+                TabView {
+                    
+                    HomeView(gr: gr)
+                        .tabItem {
+                            VStack {
+                                Image(systemName: "house")
+                                Text("HOME")
+                            }
+                    }.navigationBarTitle("")
+                        .navigationBarHidden(true)
+                    
+                    HistoryView(gr: gr)
+                        .tabItem {
+                            VStack {
+                                Image(systemName: "clock")
+                                Text("HISTORY")
+                            }
+                    }.navigationBarTitle("")
+                        .navigationBarHidden(true)
+                    
+                    
+                    ChartsView(gr: gr)
+                        .tabItem{
+                            VStack {
+                                Image(systemName: "chart.pie")
+                                Text("CHARTS")
+                            }
+                    }.navigationBarTitle("")
+                        .navigationBarHidden(true)
+                    
+                    ProfileView(gr: gr)
+                        .tabItem {
+                            VStack {
+                                Image(systemName: "person")
+                                Text("PROFILE")
+                            }
+                    }.navigationBarTitle("")
+                        .navigationBarHidden(true)
+                    
+                    
+                }.onAppear(){
+                    UITabBar.appearance().backgroundColor = UIColor(red: 251/255, green: 253/255, blue: 1, alpha: 1)
+                }.accentColor(Color("bgPurple"))
+            }
+            
+        }
         
-        TabView {
-            
-            HomeView(gr: gr)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "house")
-                        Text("HOME")
-                    }
-                }.navigationBarTitle("")
-                .navigationBarHidden(true)
-            
-            HistoryView(gr: gr)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "clock")
-                        Text("HISTORY")
-                    }
-            }.navigationBarTitle("")
-            .navigationBarHidden(true)
-            
-            
-            ChartsView(gr: gr)
-                .tabItem{
-                    VStack {
-                        Image(systemName: "chart.pie")
-                        Text("CHARTS")
-                    }
-            }.navigationBarTitle("")
-            .navigationBarHidden(true)
-            
-            ProfileView(gr: gr)
-                .tabItem {
-                    VStack {
-                        Image(systemName: "person")
-                        Text("PROFILE")
-                    }
-            }.navigationBarTitle("")
-            .navigationBarHidden(true)
-            
-            
-        }.onAppear(){
-            UITabBar.appearance().backgroundColor = UIColor(red: 251/255, green: 253/255, blue: 1, alpha: 1)
-        }.accentColor(Color("bgPurple"))
         
         
     }
@@ -66,8 +70,6 @@ struct TabNavView: View {
 
 struct TabView_Previews: PreviewProvider {
     static var previews: some View {
-        GeometryReader { gr in
-            TabNavView(gr: gr)
-        }
+        TabNavView()
     }
 }

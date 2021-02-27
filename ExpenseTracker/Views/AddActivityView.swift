@@ -49,6 +49,7 @@ struct AddActivityView: View {
                         .frame(width: gr.size.width*0.05, height: gr.size.width*0.05)
                         .onTapGesture {
                             self.popup.toggle()
+                            self.hideKeyBoard()
                     }
                     Spacer()
                     Text("Add Transaction")
@@ -332,7 +333,7 @@ struct AddActivityView: View {
                         }.padding()
                         Spacer()
                         
-                    }
+                    }.padding(.bottom, gr.size.height*0.1)
                 }
                 
                 
@@ -343,6 +344,9 @@ struct AddActivityView: View {
             .background(Color.white)
             .cornerRadius(30)
                 .shadow(color: .gray, radius: 6, y: -6)
+                .onTapGesture {
+                    self.hideKeyBoard()
+        }
         //vstack
     }
     
@@ -378,10 +382,13 @@ struct AddActivityView: View {
             self.err = true
         } else {
             DataService.instance.createTransaction(uid: Auth.auth().currentUser!.uid, transactionData: data, isIncome: isIncome, amount: Int(amount)!)
-            
+            hideKeyBoard()
             self.popup.toggle()
         }
-        
+    }
+    
+    func hideKeyBoard(){
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
 
