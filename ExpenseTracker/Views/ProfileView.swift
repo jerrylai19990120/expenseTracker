@@ -20,6 +20,9 @@ struct ProfileView: View {
     
     @State var loggedOut = false
     
+    @State var avatarImg = UIImage()
+    @State var showAlbum = false
+    
     var body: some View {
         ZStack {
             VStack {
@@ -56,14 +59,21 @@ struct ProfileView: View {
                     
                 }.padding().padding(.top, gr.size.height*0.05)
                 
+                Button(action: {
+                    self.showAlbum = true
+                }) {
+                    Image(systemName: "person.fill")
+                        .resizable().aspectRatio(contentMode: .fit)
+                        .clipped()
+                        .frame(width: gr.size.height*0.1, height: gr.size.height*0.1)
+                        .padding()
+                        .foregroundColor(.gray)
+                        .background(Color.white)
+                        .cornerRadius(60)
+
+                }
                 
-                Image(systemName: "person.fill")
-                    .resizable().aspectRatio(contentMode: .fit)
-                .clipped()
-                    .frame(width: gr.size.height*0.1, height: gr.size.height*0.1)
-                .padding()
-                    .background(Color.white)
-                    .cornerRadius(60)
+                
 
                 
                 HStack {
@@ -100,7 +110,10 @@ struct ProfileView: View {
                     
                 }
                 
-            }.onAppear {
+            }.sheet(isPresented: $showAlbum) {
+                ImagePicker(sourceType: .photoLibrary, selectedImage: self.$avatarImg)
+            }
+            .onAppear {
                 DataService.instance.retrieveUser(uid: Auth.auth().currentUser!.uid) { (success) in
                     if success {
                         self.balance = DataService.instance.user!.balance
@@ -118,6 +131,8 @@ struct ProfileView: View {
                 }
         }
     }
+    
+    
 }
 
 struct ProfileView_Previews: PreviewProvider {

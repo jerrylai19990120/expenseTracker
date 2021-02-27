@@ -23,6 +23,7 @@
 		922570C825D98A6C00367D6C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922570C725D98A6C00367D6C /* SignInView.swift */; };
 		924054B025E8A5C60025A9AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 924054AF25E8A5C60025A9AC /* GoogleService-Info.plist */; };
 		924054B225E8AA010025A9AC /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924054B125E8AA010025A9AC /* AuthService.swift */; };
+		929C4CD025EAB34900C80965 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929C4CCF25EAB34900C80965 /* ImagePicker.swift */; };
 		92DC9A3925D86C0200DB4246 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DC9A3825D86C0200DB4246 /* AppDelegate.swift */; };
 		92DC9A3B25D86C0200DB4246 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DC9A3A25D86C0200DB4246 /* SceneDelegate.swift */; };
 		92DC9A3D25D86C0200DB4246 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DC9A3C25D86C0200DB4246 /* WelcomeView.swift */; };
@@ -52,6 +53,7 @@
 		922570C725D98A6C00367D6C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		924054AF25E8A5C60025A9AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		924054B125E8AA010025A9AC /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		929C4CCF25EAB34900C80965 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		92DC9A3525D86C0200DB4246 /* Piggy Capital.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Piggy Capital.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DC9A3825D86C0200DB4246 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92DC9A3A25D86C0200DB4246 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				924054B125E8AA010025A9AC /* AuthService.swift */,
 				92F1691F25E96464006C7E20 /* DataService.swift */,
+				929C4CCF25EAB34900C80965 /* ImagePicker.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				9203506D25DDA6A40050563E /* MainStatusView.swift in Sources */,
 				9203507825DDBDE00050563E /* HistoryView.swift in Sources */,
 				922079CF25E0719700ED7579 /* SignUpPanel.swift in Sources */,
+				929C4CD025EAB34900C80965 /* ImagePicker.swift in Sources */,
 				9203507125DDBCBF0050563E /* ProfileView.swift in Sources */,
 				92DC9A3925D86C0200DB4246 /* AppDelegate.swift in Sources */,
 				92F1693525E98E7E006C7E20 /* EmptyTransactionView.swift in Sources */,
