@@ -32,6 +32,22 @@ class DataService {
     var incomeData: [Double] = [Double]()
     var expenseData: [Double] = [Double]()
     
+    //pie chart data
+    var pieChartExpense: [String:Double] = [
+        "Food & Drinks": 0.0,
+        "Clothing": 0.0,
+        "Entertainment": 0.0,
+        "Medical": 0.0,
+        "Other": 0.0,
+        "Income": 0.0,
+        "Transportation": 0.0
+    ]
+    
+    var pieChartProportion: [Double] = [Double]()
+    
+    //bar chart data
+    var barChartIncome = [(String, Int)]()
+    
     //create an user in the database
     func createUser(uid: String, userData: Dictionary<String, Any>){
         REF_USERS.child(uid).updateChildValues(userData)
@@ -71,6 +87,17 @@ class DataService {
             self.recentTransactions = []
             self.incomeData = []
             self.expenseData = []
+            self.pieChartExpense = [
+                "Food & Drinks": 0.0,
+                "Clothing": 0.0,
+                "Entertainment": 0.0,
+                "Medical": 0.0,
+                "Other": 0.0,
+                "Income": 0.0,
+                "Transportation": 0.0
+            ]
+            self.pieChartProportion = []
+            self.barChartIncome = []
 
             guard let allTransactions = snapshot.children.allObjects as? [DataSnapshot] else {
                 completion(false)
@@ -89,7 +116,9 @@ class DataService {
                     let isIncome = transactionInfo["isIncome"] as! Bool
                     if isIncome {
                         self.incomeData.append(transactionInfo["amount"] as! Double)
+                        self.barChartIncome.append(("in CAD", transactionInfo["amount"] as! Int))
                     } else {
+                        self.pieChartExpense[transactionInfo["category"] as! String]! += transactionInfo["amount"] as! Double
                         self.expenseData.append(transactionInfo["amount"] as! Double)
                     }
                 }
@@ -99,6 +128,17 @@ class DataService {
                 }
                 self.transactions.append(transaction)
                 count += 1
+            }
+            
+            var total = 0.0
+            
+            
+            for (_, amount) in self.pieChartExpense {
+                total += amount
+            }
+            
+            for (_, amount) in self.pieChartExpense {
+                self.pieChartProportion.append((amount/total)*100)
             }
             
             completion(true)

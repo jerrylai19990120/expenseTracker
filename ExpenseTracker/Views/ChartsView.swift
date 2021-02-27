@@ -8,13 +8,17 @@
 
 import SwiftUI
 import SwiftUICharts
+import Firebase
 
 struct ChartsView: View {
     
     var gr: GeometryProxy
     
+    //charts data
     @State var incomeData: [Double] = [Double]()
     @State var expenseData: [Double] = [Double]()
+    @State var barChartIncome = [(String, Int)]()
+
     
     var body: some View {
         ZStack {
@@ -48,11 +52,11 @@ struct ChartsView: View {
                     //Spacer()
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: gr.size.width*0.06) {
-                            BarChartView(data: ChartData(values: [("2018 Q4",63150), ("2019 Q1",50900), ("2019 Q2",77550), ("2019 Q3",79600), ("2019 Q4",92550)]), title: "Income", legend: "Monthly")
+                            BarChartView(data: ChartData(values: self.barChartIncome), title: "Income", legend: "Recent")
                             
-                            PieChartView(data: [8,23,54,32], title: "Category", legend: "Cumulative")
+                            PieChartView(data: DataService.instance.pieChartProportion, title: "Category", legend: "Recent")
                             
-                            LineChartView(data: self.expenseData, title: "Expense", legend: "Monthly", form: ChartForm.detail)
+                            LineChartView(data: self.expenseData, title: "Expense", legend: "Recent", form: ChartForm.detail)
                         }.padding()
                         
                     }
@@ -63,12 +67,20 @@ struct ChartsView: View {
                 
                 
             }.onAppear {
-                self.incomeData = DataService.instance.incomeData
-                self.expenseData = DataService.instance.expenseData
+                DataService.instance.getAllTransactions(uid: Auth.auth().currentUser!.uid) { (success) in
+                    if success {
+                        self.incomeData = DataService.instance.incomeData
+                        self.expenseData = DataService.instance.expenseData
+                        self.barChartIncome = DataService.instance.barChartIncome
+                        
+                    }
+                }
+                
             }
             
         }.edgesIgnoringSafeArea(.all)
     }
+    
 }
 
 struct ChartsView_Previews: PreviewProvider {
