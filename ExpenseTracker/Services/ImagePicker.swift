@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SwiftUI
+import Firebase
 
 struct ImagePicker: UIViewControllerRepresentable {
     
@@ -45,7 +46,15 @@ class ImagePickerViewCoordinator: NSObject, UINavigationControllerDelegate, UIIm
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            self.image = Image(uiImage: image)
+            
+            let imgData = image.pngData()
+            DataService.instance.uploadAvatarPicture(uid: Auth.auth().currentUser!.uid, imgData: imgData!) { (success) in
+                if success {
+                    self.image = Image(uiImage: image)
+                } else {
+                    print("Failed to upload image")
+                }
+            }
         }
         self.isPresented = false
     }
