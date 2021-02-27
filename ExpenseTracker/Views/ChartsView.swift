@@ -18,6 +18,13 @@ struct ChartsView: View {
     @State var incomeData: [Double] = [Double]()
     @State var expenseData: [Double] = [Double]()
     @State var barChartIncome = [(String, Int)]()
+    
+    @State var isNightMode = false
+    
+    let nightStyle = ChartStyle(backgroundColor: .black, accentColor: Color(red: 95/255, green: 2/255, blue: 232/255), secondGradientColor: Color(red: 212/255, green: 172/255, blue: 247/255), textColor: Color(red: 248/255, green: 198/255, blue: 52/255), legendTextColor: .gray, dropShadowColor: .white)
+    
+    let dayStyle = ChartStyle(backgroundColor: .white, accentColor: .orange, secondGradientColor: .red, textColor: .black, legendTextColor: .gray, dropShadowColor: .gray)
+
 
     
     var body: some View {
@@ -37,6 +44,9 @@ struct ChartsView: View {
                         .clipped()
                         .frame(width: gr.size.width*0.08, height: gr.size.width*0.08)
                         .aspectRatio(contentMode: .fit)
+                        .onTapGesture {
+                            self.isNightMode.toggle()
+                    }
                         
 
                 }.padding().padding(.top, gr.size.height*0.1)
@@ -45,25 +55,26 @@ struct ChartsView: View {
                 VStack {
                     //Spacer()
                     
-                    MultiLineChartView(data: [(self.incomeData, GradientColors.orngPink), (self.expenseData, GradientColors.purple)], title: "Income VS. Expense", form: ChartForm.large)
+                    MultiLineChartView(data: [(self.incomeData, GradientColors.orngPink), (self.expenseData, GradientColors.purple)], title: "Income VS. Expense", style:  isNightMode ? nightStyle : dayStyle, form: ChartForm.large)
+                    
                         
                     
                     
                     //Spacer()
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: gr.size.width*0.06) {
-                            BarChartView(data: ChartData(values: self.barChartIncome), title: "Income", legend: "Recent")
+                            BarChartView(data: ChartData(values: self.barChartIncome), title: "Income", legend: "Recent", style: isNightMode ? nightStyle : dayStyle)
                             
-                            PieChartView(data: DataService.instance.pieChartProportion, title: "Category", legend: "Recent")
+                            PieChartView(data: DataService.instance.pieChartProportion, title: "Category", legend: "Recent", style: isNightMode ? nightStyle : dayStyle)
                             
-                            LineChartView(data: self.expenseData, title: "Expense", legend: "Recent", form: ChartForm.detail)
+                            LineChartView(data: self.expenseData, title: "Expense", legend: "Recent", style:  isNightMode ? nightStyle : dayStyle, form: ChartForm.detail)
                         }.padding()
                         
                     }
                     Spacer()
                     
                 }.padding(.top, gr.size.height*0.02)
-                    .background(Color(red: 245/255, green: 247/255, blue: 249/255))
+                    .background(isNightMode ? Color(red: 22/255, green: 27/255, blue: 34/255) : Color(red: 245/255, green: 247/255, blue: 249/255))
                 
                 
             }.onAppear {

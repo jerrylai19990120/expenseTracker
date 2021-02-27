@@ -41,6 +41,12 @@ class DataService {
     var incomeData: [Double] = [Double]()
     var expenseData: [Double] = [Double]()
     
+    //avatar image url
+    var imageURL = ""
+    
+    //avatar image data
+    var imageData: Data?
+    
     //pie chart data
     var pieChartExpense: [String:Double] = [
         "Food & Drinks": 0.0,
@@ -198,16 +204,45 @@ class DataService {
                 return
             }
             
-            let size = metadata.size
-            
             imgRef.downloadURL { (url, erro) in
                 guard let url = url else {
                     completion(false)
                     return
                 }
                 
-                print(url)
+                self.REF_USERS.child(uid).child("imageURL").setValue(url.absoluteString)
+                self.imageURL = url.absoluteString
+                completion(true)
             }
         }
+       
+
     }
+    
+    //load image data
+    func loadAvatarImage(uid: String, completion: @escaping (_ status: Bool)->()){
+        
+        REF_USERS.child(uid).child("imageURL").getData { (error, snapshot) in
+            if error == nil {
+                let url = URL(string: snapshot.value as! String)
+                
+                let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+                    guard let data = data else {return}
+                    DispatchQueue.main.async {
+                        self.imageData = data
+                        self.imageURL = snapshot.value as! String
+                        completion(true)
+                    }
+                }
+                
+                task.resume()
+                
+            } else {
+                completion(false)
+            }
+        }
+        
+    }
+    
+    
 }

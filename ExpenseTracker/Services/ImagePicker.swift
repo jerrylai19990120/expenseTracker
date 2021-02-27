@@ -48,12 +48,11 @@ class ImagePickerViewCoordinator: NSObject, UINavigationControllerDelegate, UIIm
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             
             let imgData = image.pngData()
+            self.image = Image(uiImage: image)
             DataService.instance.uploadAvatarPicture(uid: Auth.auth().currentUser!.uid, imgData: imgData!) { (success) in
-                if success {
-                    self.image = Image(uiImage: image)
-                } else {
+                if !success {
                     print("Failed to upload image")
-                }
+                } 
             }
         }
         self.isPresented = false

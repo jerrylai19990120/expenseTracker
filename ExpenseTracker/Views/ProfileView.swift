@@ -25,6 +25,9 @@ struct ProfileView: View {
     @State private var shouldPresentActionScheet = false
     @State private var shouldPresentCamera = false
     
+
+    @State var customImg: UIImage?
+    
     var body: some View {
         ZStack {
             VStack {
@@ -62,25 +65,28 @@ struct ProfileView: View {
                 }.padding().padding(.top, gr.size.height*0.05)
                 
                 
-            avatarImg!
-                .resizable().aspectRatio(contentMode: .fill)
-                .frame(width: gr.size.height*0.16, height: gr.size.height*0.16)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                .cornerRadius(gr.size.height)
-                .shadow(color: .black, radius: 6)
-                .onTapGesture { self.shouldPresentActionScheet = true }
-                    .sheet(isPresented: $shouldPresentImagePicker) {
-                        ImagePicker(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary, image: self.$avatarImg, isPresented: self.$shouldPresentImagePicker)
-                }.actionSheet(isPresented: $shouldPresentActionScheet) { () -> ActionSheet in
-                    ActionSheet(title: Text("Choose mode"), message: Text("Please choose your preferred mode to set your profile image"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {
-                        self.shouldPresentImagePicker = true
-                        self.shouldPresentCamera = true
-                    }), ActionSheet.Button.default(Text("Photo Library"), action: {
-                        self.shouldPresentImagePicker = true
-                        self.shouldPresentCamera = false
-                    }), ActionSheet.Button.cancel()])
-                }
+                    avatarImg!
+                        .resizable().aspectRatio(contentMode: .fill)
+                        .frame(width: gr.size.height*0.16, height: gr.size.height*0.16)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                        .cornerRadius(gr.size.height)
+                        .shadow(color: .black, radius: 6)
+                        .onTapGesture { self.shouldPresentActionScheet = true }
+                        .sheet(isPresented: $shouldPresentImagePicker) {
+                            ImagePicker(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary, image: self.$avatarImg, isPresented: self.$shouldPresentImagePicker)
+                    }.actionSheet(isPresented: $shouldPresentActionScheet) { () -> ActionSheet in
+                        ActionSheet(title: Text("Choose mode"), message: Text("Please choose your preferred mode to set your profile image"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {
+                            self.shouldPresentImagePicker = true
+                            self.shouldPresentCamera = true
+                        }), ActionSheet.Button.default(Text("Photo Library"), action: {
+                            self.shouldPresentImagePicker = true
+                            self.shouldPresentCamera = false
+                        }), ActionSheet.Button.cancel()])
+                    }
+
+                
+            
                 
                 
 
@@ -136,6 +142,13 @@ struct ProfileView: View {
                         self.recentTransactions = DataService.instance.recentTransactions
                     }
                 }
+                DataService.instance.loadAvatarImage(uid: Auth.auth().currentUser!.uid) { (success) in
+                    if success {
+                        self.customImg = UIImage(data: DataService.instance.imageData!)
+                        self.avatarImg = Image(uiImage: self.customImg!)
+                    }
+                }
+                
         }
     }
     
