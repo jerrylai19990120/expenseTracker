@@ -28,6 +28,10 @@ class DataService {
     //recent transactions
     var recentTransactions = [Transaction]()
     
+    //income and expense data
+    var incomeData: [Double] = [Double]()
+    var expenseData: [Double] = [Double]()
+    
     //create an user in the database
     func createUser(uid: String, userData: Dictionary<String, Any>){
         REF_USERS.child(uid).updateChildValues(userData)
@@ -61,12 +65,12 @@ class DataService {
     //retrieve all transactions
     func getAllTransactions(uid: String, completion: @escaping (_ status: Bool)->()){
         
-        
-        
         REF_USERS.child(uid).child("transactions").observeSingleEvent(of: .value) { (snapshot) in
             
             self.transactions = []
             self.recentTransactions = []
+            self.incomeData = []
+            self.expenseData = []
 
             guard let allTransactions = snapshot.children.allObjects as? [DataSnapshot] else {
                 completion(false)
@@ -74,11 +78,21 @@ class DataService {
             }
             
             var count = 1
+            var dataCount = 1
             
             for item in allTransactions {
                 let transactionInfo = item.value as! [String:Any]
                 
                 let transaction = Transaction(category: transactionInfo["category"] as! String, note: transactionInfo["note"] as! String, date: transactionInfo["date"] as! String, amount: transactionInfo["amount"] as! Int, isIncome: transactionInfo["isIncome"] as! Bool)
+                
+                if dataCount <= 100 {
+                    let isIncome = transactionInfo["isIncome"] as! Bool
+                    if isIncome {
+                        self.incomeData.append(transactionInfo["amount"] as! Double)
+                    } else {
+                        self.expenseData.append(transactionInfo["amount"] as! Double)
+                    }
+                }
                 
                 if count <= 5 {
                     self.recentTransactions.append(transaction)

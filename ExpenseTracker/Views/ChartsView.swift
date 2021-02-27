@@ -13,6 +13,9 @@ struct ChartsView: View {
     
     var gr: GeometryProxy
     
+    @State var incomeData: [Double] = [Double]()
+    @State var expenseData: [Double] = [Double]()
+    
     var body: some View {
         ZStack {
             Color("bgPurple")
@@ -37,7 +40,8 @@ struct ChartsView: View {
                 
                 VStack {
                     //Spacer()
-                    MultiLineChartView(data: [([8,32,11,23,40,28], GradientColors.orngPink), ([90,99,78,111,70,60,77], GradientColors.purple)], title: "Income VS. Expense", form: ChartForm.large)
+                    
+                    MultiLineChartView(data: [(self.incomeData, GradientColors.orngPink), (self.expenseData, GradientColors.purple)], title: "Income VS. Expense", form: ChartForm.large)
                         
                     
                     
@@ -48,7 +52,7 @@ struct ChartsView: View {
                             
                             PieChartView(data: [8,23,54,32], title: "Category", legend: "Cumulative")
                             
-                            LineChartView(data: [8,23,54,32,12,37,7,23,43], title: "Expense", legend: "Monthly", form: ChartForm.detail)
+                            LineChartView(data: self.expenseData, title: "Expense", legend: "Monthly", form: ChartForm.detail)
                         }.padding()
                         
                     }
@@ -58,6 +62,9 @@ struct ChartsView: View {
                     .background(Color(red: 245/255, green: 247/255, blue: 249/255))
                 
                 
+            }.onAppear {
+                self.incomeData = DataService.instance.incomeData
+                self.expenseData = DataService.instance.expenseData
             }
             
         }.edgesIgnoringSafeArea(.all)

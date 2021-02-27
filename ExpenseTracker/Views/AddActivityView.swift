@@ -328,7 +328,6 @@ struct AddActivityView: View {
                                 
                             Spacer()
                             TextField("Notes", text: $note)
-                                    .keyboardType(.numberPad)
                                     .font(.system(size: gr.size.width*0.07, weight: .medium, design: .rounded))
                         }.padding()
                         Spacer()
