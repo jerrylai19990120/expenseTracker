@@ -13,45 +13,45 @@ import SwiftUI
 struct ImagePicker: UIViewControllerRepresentable {
     
     var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @Binding var image: Image?
+    @Binding var isPresented: Bool
     
-    @Binding var selectedImage: UIImage
-    @Environment(\.presentationMode) var presentationMode
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController{
-        
-        
-        let imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = sourceType
-        
-        imagePicker.delegate = context.coordinator
-        
-        return imagePicker
+    func makeCoordinator() -> ImagePickerViewCoordinator {
+        return ImagePickerViewCoordinator(image: $image, isPresented: $isPresented)
     }
     
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>){
-        
+    func makeUIViewController(context: Context) -> UIImagePickerController {
+        let pickerController = UIImagePickerController()
+        pickerController.sourceType = sourceType
+        pickerController.delegate = context.coordinator
+        return pickerController
     }
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
+        // Nothing to update here
     }
+
 }
 
-final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ImagePickerViewCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    var parent: ImagePicker
+    @Binding var image: Image?
+    @Binding var isPresented: Bool
     
-    init(_ parent: ImagePicker) {
-        self.parent = parent
+    init(image: Binding<Image?>, isPresented: Binding<Bool>) {
+        self._image = image
+        self._isPresented = isPresented
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            parent.selectedImage = image
+            self.image = Image(uiImage: image)
         }
-        
-        parent.presentationMode.wrappedValue.dismiss()
+        self.isPresented = false
     }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.isPresented = false
+    }
+    
 }

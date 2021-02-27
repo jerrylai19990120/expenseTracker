@@ -20,8 +20,10 @@ struct ProfileView: View {
     
     @State var loggedOut = false
     
-    @State var avatarImg = UIImage()
-    @State var showAlbum = false
+    @State private var image: Image? = Image("anon")
+    @State private var shouldPresentImagePicker = false
+    @State private var shouldPresentActionScheet = false
+    @State private var shouldPresentCamera = false
     
     var body: some View {
         ZStack {
@@ -59,18 +61,25 @@ struct ProfileView: View {
                     
                 }.padding().padding(.top, gr.size.height*0.05)
                 
-                Button(action: {
-                    self.showAlbum = true
-                }) {
-                    Image(systemName: "person.fill")
-                        .resizable().aspectRatio(contentMode: .fit)
-                        .clipped()
-                        .frame(width: gr.size.height*0.1, height: gr.size.height*0.1)
-                        .padding()
-                        .foregroundColor(.gray)
-                        .background(Color.white)
-                        .cornerRadius(60)
-
+                
+            image!
+                .resizable().aspectRatio(contentMode: .fill)
+                .frame(width: gr.size.height*0.16, height: gr.size.height*0.16)
+                .clipShape(Circle())
+                .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                .cornerRadius(gr.size.height)
+                .shadow(color: .black, radius: 6)
+                .onTapGesture { self.shouldPresentActionScheet = true }
+                    .sheet(isPresented: $shouldPresentImagePicker) {
+                        ImagePicker(sourceType: self.shouldPresentCamera ? .camera : .photoLibrary, image: self.$image, isPresented: self.$shouldPresentImagePicker)
+                }.actionSheet(isPresented: $shouldPresentActionScheet) { () -> ActionSheet in
+                    ActionSheet(title: Text("Choose mode"), message: Text("Please choose your preferred mode to set your profile image"), buttons: [ActionSheet.Button.default(Text("Camera"), action: {
+                        self.shouldPresentImagePicker = true
+                        self.shouldPresentCamera = true
+                    }), ActionSheet.Button.default(Text("Photo Library"), action: {
+                        self.shouldPresentImagePicker = true
+                        self.shouldPresentCamera = false
+                    }), ActionSheet.Button.cancel()])
                 }
                 
                 
@@ -110,8 +119,6 @@ struct ProfileView: View {
                     
                 }
                 
-            }.sheet(isPresented: $showAlbum) {
-                ImagePicker(sourceType: .photoLibrary, selectedImage: self.$avatarImg)
             }
             .onAppear {
                 DataService.instance.retrieveUser(uid: Auth.auth().currentUser!.uid) { (success) in
