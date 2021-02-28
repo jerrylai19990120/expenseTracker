@@ -32,24 +32,23 @@ struct ProfileView: View {
     
     var body: some View {
         ZStack {
-            VStack {
-                Rectangle().fill(Color("bgPurple"))
+            VStack(spacing: 0) {
+                Rectangle().fill(isNightMode ? Color(red: 39/255, green: 31/255, blue: 31/255) : Color("bgPurple"))
                     .frame(height: gr.size.height*0.5)
-                Rectangle().fill(Color.white)
+                Rectangle().fill(isNightMode ? Color(red: 64/255, green: 64/255, blue: 64/255) : Color.white)
             }
             
             VStack {
                 Spacer()
                 HStack(alignment: .center) {
                     
-                    Text("User Profile").foregroundColor(.white)
+                    Text("User Profile").foregroundColor(isNightMode ? .orange : .white)
                         .font(.system(size: gr.size.width*0.06, weight: .bold, design: .default))
                     Spacer()
                     NavigationLink(destination: WelcomeView().navigationBarTitle("").navigationBarHidden(true), isActive: $loggedOut){
                         
                         Button(action: {
                             do {
-                                
                                 try? Auth.auth().signOut()
                                 self.loggedOut.toggle()
                             } catch {
@@ -59,7 +58,7 @@ struct ProfileView: View {
                             Image(systemName: "arrow.right.square")
                                 .resizable().aspectRatio(contentMode: .fit)
                                 .frame(width: gr.size.height*0.044, height: gr.size.height*0.044)
-                                .foregroundColor(.white)
+                                .foregroundColor(isNightMode ? .orange : .white)
                         }
                         
                     }
@@ -71,7 +70,7 @@ struct ProfileView: View {
                         .resizable().aspectRatio(contentMode: .fill)
                         .frame(width: gr.size.height*0.16, height: gr.size.height*0.16)
                         .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                        .overlay(Circle().stroke(isNightMode ? Color.orange : Color.white, lineWidth: 4))
                         .cornerRadius(gr.size.height)
                         .shadow(color: .black, radius: 6)
                         .onTapGesture { self.shouldPresentActionScheet = true }
@@ -88,18 +87,13 @@ struct ProfileView: View {
                     }
 
                 
-            
-                
-                
-
-                
                 HStack {
                     Text("Hello,")
-                    .foregroundColor(.white)
+                    .foregroundColor(isNightMode ? .orange : .white)
                     .font(.system(size: gr.size.height*0.03, weight: .thin, design: .default))
                     
                     Text("\(username)")
-                    .foregroundColor(.white)
+                    .foregroundColor(isNightMode ? .orange : .white)
                     .font(.system(size: gr.size.height*0.035, weight: .medium, design: .default))
                 }.padding()
                 
@@ -108,14 +102,15 @@ struct ProfileView: View {
                 VStack {
                     Text("$ \(balance)")
                         .font(.system(size: gr.size.height*0.054, weight: .medium, design: .rounded))
+                        .foregroundColor(isNightMode ? Color(red: 247/255, green: 39/255, blue: 78/255) : Color.black)
                     Text("CURRENT BALANCE")
                     .font(.system(size: gr.size.height*0.028, weight: .medium, design: .rounded))
-                        .foregroundColor(.gray)
+                        .foregroundColor(isNightMode ? Color(red: 246/255, green: 49/255, blue: 89/255) : Color.gray)
                 }.padding()
                     .frame(width: gr.size.width*0.9)
-                    .background(Color.white)
+                    .background(isNightMode ? Color(red: 39/255, green: 31/255, blue: 31/255) : Color.white)
                     .cornerRadius(12)
-                    .shadow(color: .gray, radius: 6)
+                    .shadow(color: isNightMode ? Color.orange : Color.gray, radius: 6)
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {

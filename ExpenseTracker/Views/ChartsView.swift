@@ -21,7 +21,7 @@ struct ChartsView: View {
     
     @Binding var isNightMode: Bool
     
-    let nightStyle = ChartStyle(backgroundColor: .black, accentColor: Color(red: 95/255, green: 2/255, blue: 232/255), secondGradientColor: Color(red: 212/255, green: 172/255, blue: 247/255), textColor: Color(red: 248/255, green: 198/255, blue: 52/255), legendTextColor: .gray, dropShadowColor: .white)
+    let nightStyle = ChartStyle(backgroundColor: .black, accentColor: Color(red: 95/255, green: 2/255, blue: 232/255), secondGradientColor: Color(red: 212/255, green: 172/255, blue: 247/255), textColor: Color(red: 248/255, green: 198/255, blue: 52/255), legendTextColor: .gray, dropShadowColor: .orange)
     
     let dayStyle = ChartStyle(backgroundColor: .white, accentColor: .orange, secondGradientColor: .red, textColor: .black, legendTextColor: .gray, dropShadowColor: .gray)
 
@@ -29,20 +29,25 @@ struct ChartsView: View {
     
     var body: some View {
         ZStack {
-            Color("bgPurple")
+            if isNightMode {
+                Color(red: 39/255, green: 31/255, blue: 31/255)
+            } else {
+                Color("bgPurple")
+            }
+            
             
             VStack {
                 
                 HStack {
                     Text("Expense Analysis")
-                        .foregroundColor(.white)
+                        .foregroundColor(isNightMode ? Color.orange : Color.white)
                         .font(.system(size: gr.size.width*0.06, weight: .bold, design: .default))
                     Spacer()
                     Image(systemName: "moon.circle.fill")
-                        .renderingMode(.original)
                         .resizable()
                         .clipped()
                         .frame(width: gr.size.width*0.08, height: gr.size.width*0.08)
+                        .foregroundColor(isNightMode ? Color.orange : Color.white)
                         .aspectRatio(contentMode: .fit)
                         .onTapGesture {
                             self.isNightMode.toggle()
@@ -53,14 +58,14 @@ struct ChartsView: View {
                 
                 
                 VStack {
-                    //Spacer()
+                    
                     
                     MultiLineChartView(data: [(self.incomeData, GradientColors.orngPink), (self.expenseData, GradientColors.purple)], title: "Income VS. Expense", style:  isNightMode ? nightStyle : dayStyle, form: ChartForm.large)
                     
                         
                     
                     
-                    //Spacer()
+                    
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: gr.size.width*0.06) {
                             BarChartView(data: ChartData(values: self.barChartIncome), title: "Income", legend: "Recent", style: isNightMode ? nightStyle : dayStyle)
