@@ -54,6 +54,7 @@
 		924054AF25E8A5C60025A9AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		924054B125E8AA010025A9AC /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		929C4CCF25EAB34900C80965 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		929CB6DF25EC1978000E88EA /* Piggy Capital.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Piggy Capital.entitlements"; sourceTree = "<group>"; };
 		92DC9A3525D86C0200DB4246 /* Piggy Capital.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Piggy Capital.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DC9A3825D86C0200DB4246 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92DC9A3A25D86C0200DB4246 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +125,7 @@
 		92DC9A3725D86C0200DB4246 /* ExpenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				929CB6DF25EC1978000E88EA /* Piggy Capital.entitlements */,
 				92F1692125E96D3F006C7E20 /* Models */,
 				9203507225DDBCDD0050563E /* ComponentViews */,
 				92DC9A4D25D86FD700DB4246 /* Services */,
@@ -469,8 +471,9 @@
 			baseConfigurationReference = 249CA204352EE34DE0BCB486 /* Pods-ExpenseTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ExpenseTracker/Piggy Capital.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.28;
+				CURRENT_PROJECT_VERSION = 1.1.29;
 				DEVELOPMENT_ASSET_PATHS = "\"ExpenseTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8L83CZ8839;
 				ENABLE_PREVIEWS = YES;
@@ -491,8 +494,9 @@
 			baseConfigurationReference = 1E308C971527D956786E71AA /* Pods-ExpenseTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ExpenseTracker/Piggy Capital.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.28;
+				CURRENT_PROJECT_VERSION = 1.1.29;
 				DEVELOPMENT_ASSET_PATHS = "\"ExpenseTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = 8L83CZ8839;
 				ENABLE_PREVIEWS = YES;
