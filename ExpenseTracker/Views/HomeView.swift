@@ -38,28 +38,27 @@ struct HomeView: View {
                 Rectangle().fill(self.isNightMode ? Color(red: 64/255, green: 64/255, blue: 64/255) : Color.white)
             }
             
+            if self.recentTransactions.count == 0 {
+                EmptyTransactionView(gr: gr)
+            }
             
             VStack(spacing: 0) {
                 Spacer()
                 
                 MainStatusView(gr: gr, balance: $balance, income: $income, expense: $expense, isNightMode: $isNightMode)
                     
-                if self.recentTransactions.count == 0 {
-                    EmptyTransactionView(gr: gr)
-                } else {
-                    ScrollView(.vertical, showsIndicators: false) {
-                        VStack {
-                            
-                            ForEach(recentTransactions, id: \.self){
-                                item in
-                                ExpenseItem(gr: self.gr, date: item.date, note: item.note, amount: item.amount, isIncome: item.isIncome, category: item.category, isNightMode: self.$isNightMode)
-                            }
-                            
-                        }.padding().padding(.bottom, gr.size.height*0.1)
-                        
-                    }
-                }
                 
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack {
+                        
+                        ForEach(recentTransactions, id: \.self){
+                            item in
+                            ExpenseItem(gr: self.gr, date: item.date, note: item.note, amount: item.amount, isIncome: item.isIncome, category: item.category, isNightMode: self.$isNightMode)
+                        }
+                        
+                    }.padding().padding(.bottom, gr.size.height*0.1)
+                    
+                }
                 
                 }.padding(.top)
                 .onAppear {

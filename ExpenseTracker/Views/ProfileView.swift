@@ -38,6 +38,10 @@ struct ProfileView: View {
                 Rectangle().fill(isNightMode ? Color(red: 64/255, green: 64/255, blue: 64/255) : Color.white)
             }
             
+            if recentTransactions.count == 0 {
+                EmptyTransactionView(gr: gr)
+            }
+            
             VStack {
                 Spacer()
                 HStack(alignment: .center) {

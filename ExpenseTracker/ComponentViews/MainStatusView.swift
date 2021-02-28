@@ -39,10 +39,10 @@ struct MainStatusView: View {
                 HStack{
                     Text("$")
                         .font(.system(size: gr.size.width*0.09, weight: .bold, design: .default))
-                        .foregroundColor(isNightMode ? Color.orange : Color.white)
+                        .foregroundColor(isNightMode ? Color(red: 247/255, green: 39/255, blue: 78/255) : Color.white)
                     Text("\(balance)")
                         .font(.system(size: gr.size.width*0.12, weight: .bold, design: .default))
-                        .foregroundColor(isNightMode ? Color.orange : Color.white)
+                        .foregroundColor(isNightMode ? Color(red: 247/255, green: 39/255, blue: 78/255) : Color.white)
                 }
                 Text("\(formatter.string(from: Date()))")
                     .font(.system(size: gr.size.width*0.05, weight: .light, design: .default))
@@ -64,7 +64,7 @@ struct MainStatusView: View {
                             .foregroundColor(isNightMode ? Color.orange : Color.white)
                         Text("$\(income)")
                             .font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
-                            .foregroundColor(isNightMode ? Color.orange : Color.white)
+                            .foregroundColor(isNightMode ? Color(red: 247/255, green: 39/255, blue: 78/255) : Color.white)
                     }
                 }
                 Spacer()
@@ -81,12 +81,12 @@ struct MainStatusView: View {
                             .foregroundColor(isNightMode ? Color.orange : Color.white)
                         Text("$\(expense)")
                             .font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
-                            .foregroundColor(isNightMode ? Color.orange : Color.white)
+                            .foregroundColor(isNightMode ? Color(red: 247/255, green: 39/255, blue: 78/255) : Color.white)
                     }
                 }
                 
             }
-        }.padding()
+        }.padding().padding(.top, gr.size.height*0.03)
             .frame(width: gr.size.width)
         
             

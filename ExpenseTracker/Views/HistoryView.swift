@@ -24,9 +24,16 @@ struct HistoryView: View {
     var body: some View {
         ZStack {
             
-            VStack {
-                Rectangle().fill(isNightMode ? Color(red: 39/255, green: 31/255, blue: 31/255) : Color("bgPurple"))
+            if isNightMode {
+                Color(red: 39/255, green: 31/255, blue: 31/255)
+            } else {
+                Color("bgPurple")
             }
+            
+            if transactions.count == 0 {
+                EmptyTransactionView(gr: gr)
+            }
+            
             
             VStack(spacing: 0) {
                 
@@ -47,26 +54,24 @@ struct HistoryView: View {
                         }
                         
                         
-                    }
+                    }.padding(.top, gr.size.height*0.03)
                     
                     
 
                 }.padding()
                 
-                if transactions.count == 0 {
-                    EmptyTransactionView(gr: gr)
-                } else {
-                    ScrollView(.vertical, showsIndicators: false) {
-                        VStack(spacing: 0) {
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: 0) {
                             
-                            ForEach(transactions, id: \.self) {
-                                item in
-                                HistoryItem(gr: self.gr, date: item.date, note: item.note, amount: item.amount, isIncome: item.isIncome, category: item.category, isNightMode: self.$isNightMode)
-                            }
-                            
+                        ForEach(transactions, id: \.self) {
+                            item in
+                            HistoryItem(gr: self.gr, date: item.date, note: item.note, amount: item.amount, isIncome: item.isIncome, category: item.category, isNightMode: self.$isNightMode)
                         }
-                    }.background(isNightMode ? Color(red: 64/255, green: 64/255, blue: 64/255) : Color.white)
-                }
+                            
+                    }
+                }.background(isNightMode ? Color(red: 64/255, green: 64/255, blue: 64/255) : Color.white)
+                
                 
                 
                 

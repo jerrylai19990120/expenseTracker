@@ -15,16 +15,16 @@ struct EmptyTransactionView: View {
     var body: some View {
         VStack(alignment: .center, spacing: gr.size.height*0.06) {
             Spacer()
-            Image("piggyBank").resizable().aspectRatio(contentMode: .fit).frame(width: gr.size.width*0.4)
+            Image("piggyBank").resizable().aspectRatio(contentMode: .fit).frame(width: gr.size.width*0.4, height: gr.size.width*0.4)
             
             Text("Go add some transactions")
                 .foregroundColor(.gray)
                 .font(.system(size: gr.size.width*0.06, weight: .semibold, design: .rounded))
             Spacer()
             Spacer()
-        }.padding()
-            .frame(width: gr.size.width, height: gr.size.height)
-        .background(Color.white)
+        }.padding(.top, gr.size.height*0.5)
+        .frame(width: gr.size.width, height: gr.size.height)
+        .background(Color.clear)
     }
 }
 

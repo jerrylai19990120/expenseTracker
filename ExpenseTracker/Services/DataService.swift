@@ -224,7 +224,11 @@ class DataService {
         
         REF_USERS.child(uid).child("imageURL").getData { (error, snapshot) in
             if error == nil {
-                let urlString = String(describing: snapshot.value)
+                guard let urlString = snapshot.value as? String else {
+                    completion(false)
+                    return
+                }
+                
                 guard let url = URL(string: urlString) else {
                     completion(false)
                     return
