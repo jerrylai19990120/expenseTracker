@@ -51,6 +51,7 @@ struct ChartsView: View {
                         .aspectRatio(contentMode: .fit)
                         .onTapGesture {
                             self.isNightMode.toggle()
+                            
                     }
                         
 

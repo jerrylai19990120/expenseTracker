@@ -10,12 +10,19 @@ import SwiftUI
 
 struct TabNavView: View {
     
-    @State var isNightMode = true
+    @State var isNightMode = false
     
     var body: some View {
         GeometryReader {
             gr in
-            TabDetailView(gr: gr, isNightMode: self.$isNightMode)
+            
+            if self.isNightMode {
+                TabDetailView(gr: gr, isNightMode: self.$isNightMode, tabNightMode: true)
+            } else {
+                TabDetailView(gr: gr, isNightMode: self.$isNightMode, tabNightMode: false)
+            }
+            
+            
             
         }
         
@@ -38,9 +45,12 @@ struct TabDetailView: View {
     
     @Binding var isNightMode: Bool
     
+    var tabNightMode: Bool
+    
     var body: some View {
         NavigationView {
             TabView {
+                
                 HomeView(gr: gr, isNightMode: self.$isNightMode)
                     .tabItem {
                         VStack {
@@ -81,14 +91,12 @@ struct TabDetailView: View {
                 
             }
             .onAppear(){
-                if self.isNightMode {
+                if self.tabNightMode {
                     UITabBar.appearance().barTintColor = UIColor.black
                 } else {
-                    UITabBar.appearance().backgroundColor = UIColor.purple
-                    
-            }
-                
-            }.accentColor(isNightMode ? Color.orange : Color("bgPurple"))
+                    UITabBar.appearance().barTintColor = UIColor(red: 228/255, green: 202/255, blue: 246/255, alpha: 1)
+                }
+            }.accentColor(self.isNightMode ? Color.orange : Color("bgPurple"))
         }
     }
 }
