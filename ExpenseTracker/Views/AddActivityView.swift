@@ -35,10 +35,13 @@ struct AddActivityView: View {
     
     @State var err = false
     
-    init(gr: GeometryProxy, popup: Binding<Bool>) {
+    @Binding var isNightMode: Bool
+    
+    init(gr: GeometryProxy, popup: Binding<Bool>, isNightMode: Binding<Bool>) {
         self.gr = gr
         self._popup = popup
         self.formatter.dateFormat = "MMM d, y"
+        self._isNightMode = isNightMode
     }
     
     var body: some View {
@@ -47,17 +50,19 @@ struct AddActivityView: View {
                 HStack {
                     Image(systemName: "xmark").resizable().aspectRatio(contentMode: .fit)
                         .frame(width: gr.size.width*0.05, height: gr.size.width*0.05)
+                        .foregroundColor(isNightMode ? Color.orange : Color.black)
                         .onTapGesture {
                             self.popup.toggle()
                             self.hideKeyBoard()
                     }
                     Spacer()
                     Text("Add Transaction")
-                        .foregroundColor(.black)
+                        .foregroundColor(isNightMode ? Color.orange : Color.black)
                         .font(.system(size: gr.size.width*0.04, weight: .medium, design: .rounded))
                     Spacer()
                     Image(systemName: "checkmark").resizable().aspectRatio(contentMode: .fit)
                         .frame(width: gr.size.width*0.05, height: gr.size.width*0.05)
+                        .foregroundColor(isNightMode ? Color.orange : Color.black)
                         .onTapGesture {
                             self.uploadTransactionData()
                     }
@@ -78,6 +83,7 @@ struct AddActivityView: View {
                                 .keyboardType(.numberPad)
                                 .font(.system(size: gr.size.width*0.08, weight: .medium, design: .rounded))
                                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(err ? Color.red : Color.white, lineWidth: 1))
+                                .foregroundColor(isNightMode ? Color.orange : Color.black)
                         }.padding()
                         
                         Toggle(isOn: $isIncome) {
@@ -91,6 +97,7 @@ struct AddActivityView: View {
                                         .foregroundColor(.yellow)
                                     
                                     Text("Income").font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
+                                    .foregroundColor(isNightMode ? Color.orange : Color.black)
                                 } else {
                                     Image(systemName: "cart.fill")
                                         .resizable()
@@ -99,6 +106,7 @@ struct AddActivityView: View {
                                         .foregroundColor(.green)
                                         
                                     Text("Expense").font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
+                                    .foregroundColor(isNightMode ? Color.orange : Color.black)
                                 }
                                 
                             }
@@ -115,14 +123,18 @@ struct AddActivityView: View {
                             VStack {
                                 HStack {
                                     Text("\(self.selection)")
-                                        .foregroundColor(.black)
+                                        .foregroundColor(isNightMode ? Color.orange : Color.black)
                                         .font(.system(size: gr.size.width*0.06, weight: .semibold, design: .rounded))
                                     Spacer()
                                     if expanded {
-                                        Image(systemName: "chevron.down").resizable().renderingMode(.original).aspectRatio(contentMode: .fit)
+                                        Image(systemName: "chevron.down").resizable()
+                                            .foregroundColor(isNightMode ? Color.orange : Color.black)
+                                            .aspectRatio(contentMode: .fit)
                                             .frame(width: gr.size.width*0.054)
                                     } else {
-                                        Image(systemName: "chevron.right").resizable().renderingMode(.original).aspectRatio(contentMode: .fit)
+                                        Image(systemName: "chevron.right").resizable()
+                                            .foregroundColor(isNightMode ? Color.orange : Color.black)
+                                            .aspectRatio(contentMode: .fit)
                                             .frame(width: gr.size.width*0.028)
                                     }
                                     
@@ -147,7 +159,7 @@ struct AddActivityView: View {
                                                 .cornerRadius(gr.size.width*0.09)
                                             Spacer()
                                             Text("Clothing")
-                                                .foregroundColor(.black)
+                                                .foregroundColor(isNightMode ? Color.orange : Color.black)
                                                 .font(.system(size: gr.size.width*0.05, weight: .semibold, design: .rounded))
                                             Spacer()
                                         }
@@ -169,7 +181,7 @@ struct AddActivityView: View {
                                                 .cornerRadius(gr.size.width*0.09)
                                             Spacer()
                                             Text("Transportation")
-                                                .foregroundColor(.black)
+                                                .foregroundColor(isNightMode ? Color.orange : Color.black)
                                                 .font(.system(size: gr.size.width*0.05, weight: .semibold, design: .rounded))
                                             Spacer()
                                         }
@@ -191,7 +203,7 @@ struct AddActivityView: View {
                                                 .cornerRadius(gr.size.width*0.09)
                                             Spacer()
                                             Text("Entertainment")
-                                                .foregroundColor(.black)
+                                                .foregroundColor(isNightMode ? Color.orange : Color.black)
                                                 .font(.system(size: gr.size.width*0.05, weight: .semibold, design: .rounded))
                                             Spacer()
                                         }
@@ -213,7 +225,7 @@ struct AddActivityView: View {
                                                 .cornerRadius(gr.size.width*0.09)
                                             Spacer()
                                             Text("Food & Drinks")
-                                                .foregroundColor(.black)
+                                                .foregroundColor(isNightMode ? Color.orange : Color.black)
                                                 .font(.system(size: gr.size.width*0.05, weight: .semibold, design: .rounded))
                                             Spacer()
                                         }
@@ -235,7 +247,7 @@ struct AddActivityView: View {
                                                 .cornerRadius(gr.size.width*0.09)
                                             Spacer()
                                             Text("Income")
-                                                .foregroundColor(.black)
+                                                .foregroundColor(isNightMode ? Color.orange : Color.black)
                                                 .font(.system(size: gr.size.width*0.05, weight: .semibold, design: .rounded))
                                             Spacer()
                                         }
@@ -257,7 +269,7 @@ struct AddActivityView: View {
                                                 .cornerRadius(gr.size.width*0.09)
                                             Spacer()
                                             Text("Medical")
-                                                .foregroundColor(.black)
+                                                .foregroundColor(isNightMode ? Color.orange : Color.black)
                                                 .font(.system(size: gr.size.width*0.05, weight: .semibold, design: .rounded))
                                             Spacer()
                                         }
@@ -280,7 +292,7 @@ struct AddActivityView: View {
                                                 .cornerRadius(gr.size.width*0.09)
                                             Spacer()
                                             Text("Other")
-                                                .foregroundColor(.black)
+                                                .foregroundColor(isNightMode ? Color.orange : Color.black)
                                                 .font(.system(size: gr.size.width*0.05, weight: .semibold, design: .rounded))
                                             Spacer()
                                         }
@@ -303,12 +315,14 @@ struct AddActivityView: View {
                                         .background(Color("bgPurple"))
                                         .cornerRadius(gr.size.width*0.09)
                                 Spacer()
-                                Text("\(self.formatter.string(from: self.transactionDate))").foregroundColor(.black).font(.system(size: gr.size.width*0.046, weight: .semibold, design: .default))
+                                Text("\(self.formatter.string(from: self.transactionDate))").foregroundColor(isNightMode ? Color.orange : Color.black).font(.system(size: gr.size.width*0.046, weight: .semibold, design: .default))
                             }
                             
                             HStack {
                                 Spacer()
                                 DatePicker("Transaction Date:", selection: $transactionDate, displayedComponents: .date).labelsHidden()
+                                    .colorInvert()
+                                    .colorMultiply(isNightMode ? Color.orange : Color.black)
                                     .frame(height: gr.size.height*0.12, alignment: .center)
                                     .clipped()
                                 Spacer()
@@ -329,6 +343,8 @@ struct AddActivityView: View {
                             Spacer()
                             TextField("Notes", text: $note)
                                     .font(.system(size: gr.size.width*0.07, weight: .medium, design: .rounded))
+                                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.white, lineWidth: 1))
+                                    .foregroundColor(isNightMode ? Color.orange : Color.black)
                         }.padding()
                         Spacer()
                         
@@ -340,9 +356,9 @@ struct AddActivityView: View {
                 
             }.padding(.top, gr.size.height*0.03)
             .frame(height: gr.size.height*0.88)
-            .background(Color.white)
+                .background(isNightMode ? Color(red: 64/255, green: 64/255, blue: 64/255) : Color.white)
             .cornerRadius(30)
-                .shadow(color: .gray, radius: 6, y: -6)
+                .shadow(color: isNightMode ? Color.orange : Color.gray, radius: 6, y: -6)
                 .onTapGesture {
                     self.hideKeyBoard()
         }
@@ -394,7 +410,7 @@ struct AddActivityView: View {
 struct AddActivityView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { gr in
-            AddActivityView(gr: gr, popup: Binding.constant(true))
+            AddActivityView(gr: gr, popup: Binding.constant(true), isNightMode: .constant(true))
         }
     }
 }

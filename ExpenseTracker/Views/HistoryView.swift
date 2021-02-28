@@ -76,7 +76,7 @@ struct HistoryView: View {
             
             VStack {
                 Spacer()
-                AddActivityView(gr: gr, popup: $popup)
+                AddActivityView(gr: gr, popup: $popup, isNightMode: $isNightMode)
             }.offset(y: popup ? gr.size.height*0.018 : gr.size.height + 88)
                 .animation(.default)
             
