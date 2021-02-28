@@ -30,7 +30,7 @@ struct HistoryView: View {
                 Color("bgPurple")
             }
             
-            if transactions.count == 0 {
+            if self.transactions.count == 0 {
                 EmptyTransactionView(gr: gr)
             }
             
@@ -64,7 +64,7 @@ struct HistoryView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 0) {
                             
-                        ForEach(transactions, id: \.self) {
+                        ForEach(self.transactions, id: \.self) {
                             item in
                             HistoryItem(gr: self.gr, date: item.date, note: item.note, amount: item.amount, isIncome: item.isIncome, category: item.category, isNightMode: self.$isNightMode)
                         }
