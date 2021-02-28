@@ -224,9 +224,13 @@ class DataService {
         
         REF_USERS.child(uid).child("imageURL").getData { (error, snapshot) in
             if error == nil {
-                let url = URL(string: snapshot.value as! String)
+                let urlString = String(describing: snapshot.value)
+                guard let url = URL(string: urlString) else {
+                    completion(false)
+                    return
+                }
                 
-                let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+                let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
                     guard let data = data else {return}
                     DispatchQueue.main.async {
                         self.imageData = data
