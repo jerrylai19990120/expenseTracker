@@ -19,7 +19,7 @@ struct ChartsView: View {
     @State var expenseData: [Double] = [Double]()
     @State var barChartIncome = [(String, Int)]()
     
-    @State var isNightMode = false
+    @Binding var isNightMode: Bool
     
     let nightStyle = ChartStyle(backgroundColor: .black, accentColor: Color(red: 95/255, green: 2/255, blue: 232/255), secondGradientColor: Color(red: 212/255, green: 172/255, blue: 247/255), textColor: Color(red: 248/255, green: 198/255, blue: 52/255), legendTextColor: .gray, dropShadowColor: .white)
     
@@ -97,7 +97,7 @@ struct ChartsView: View {
 struct ChartsView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { gr in
-            ChartsView(gr: gr)
+            ChartsView(gr: gr, isNightMode: .constant(false))
         }
     }
 }

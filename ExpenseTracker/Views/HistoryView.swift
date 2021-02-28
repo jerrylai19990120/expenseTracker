@@ -19,6 +19,8 @@ struct HistoryView: View {
     
     @State var transactions: [Transaction] = [Transaction]()
     
+    @Binding var isNightMode: Bool
+    
     var body: some View {
         ZStack {
             
@@ -101,7 +103,7 @@ struct HistoryView: View {
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { gr in
-            HistoryView(gr: gr)
+            HistoryView(gr: gr, isNightMode: .constant(false))
         }
         
     }

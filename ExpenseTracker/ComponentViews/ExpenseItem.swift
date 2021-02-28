@@ -42,6 +42,8 @@ struct ExpenseItem: View {
         "Transportation": "transportationColor"
     ]
     
+    @Binding var isNightMode: Bool
+    
     var body: some View {
         HStack {
             
@@ -61,24 +63,25 @@ struct ExpenseItem: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("\(note=="" ? category : note)")
                         .font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
-                        .foregroundColor(Color.black)
+                        .foregroundColor(isNightMode ? Color(red: 247/255, green: 0/255, blue: 85.255) : Color.black)
                     
                     
                     
                     Text("\(date)")
                         .font(.system(size: gr.size.width*0.03, weight: .medium, design: .default))
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(isNightMode ? Color(red: 247/255, green: 0/255, blue: 85.255) : Color.gray)
                 }
                 
             }
             Spacer()
             Text("\(isIncome ? "+$\(amount)" : "-$\(amount)")")
                 .font(.system(size: gr.size.width*0.05, weight: .medium, design: .default))
-                .foregroundColor(isIncome ? Color(red: 45/255, green: 115/255, blue: 44/255) : Color(red: 216/255, green: 108/255, blue: 133/255))
+                .foregroundColor(!isNightMode ? (isIncome ? Color(red: 45/255, green: 115/255, blue: 44/255) : Color(red: 216/255, green: 108/255, blue: 133/255)) : (isIncome ? Color(red: 31/255, green: 204/255, blue: 78/255) : Color(red: 247/255, green: 65/255, blue: 47/255)))
+            
             
         }.padding(.all)
-            .background(Color.white)
-            .cornerRadius(16).shadow(color: .gray, radius: 3)
+            .background(isNightMode ? Color(red: 39/255, green: 31/255, blue: 31/255) : Color.white)
+            .cornerRadius(16).shadow(color: isNightMode ? .orange : .gray, radius: 3)
         
     }
 }
@@ -86,7 +89,7 @@ struct ExpenseItem: View {
 struct ExpenseItem_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { gr in
-            ExpenseItem(gr: gr)
+            ExpenseItem(gr: gr, isNightMode: .constant(true))
         }
         
     }

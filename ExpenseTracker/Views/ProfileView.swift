@@ -28,6 +28,8 @@ struct ProfileView: View {
 
     @State var customImg: UIImage?
     
+    @Binding var isNightMode: Bool
+    
     var body: some View {
         ZStack {
             VStack {
@@ -119,7 +121,7 @@ struct ProfileView: View {
                     VStack {
                         ForEach(recentTransactions, id: \.self){
                             item in
-                            ExpenseItem(gr: self.gr, date: item.date, note: item.note, amount: item.amount, isIncome: item.isIncome, category: item.category)
+                            ExpenseItem(gr: self.gr, date: item.date, note: item.note, amount: item.amount, isIncome: item.isIncome, category: item.category, isNightMode: self.$isNightMode)
                         }
                     }.padding().padding(.bottom, gr.size.height*0.1)
                     
@@ -158,7 +160,7 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { gr in
-            ProfileView(gr: gr)
+            ProfileView(gr: gr, isNightMode: .constant(false))
         }
         
     }

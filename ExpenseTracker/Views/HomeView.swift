@@ -19,8 +19,11 @@ struct HomeView: View {
     
     @State var recentTransactions: [Transaction] = [Transaction]()
     
-    init(gr: GeometryProxy) {
+    @Binding var isNightMode: Bool
+    
+    init(gr: GeometryProxy, isNightMode: Binding<Bool>) {
         self.gr = gr
+        self._isNightMode = isNightMode
     }
     
     
@@ -30,23 +33,23 @@ struct HomeView: View {
         ZStack {
             
             VStack(spacing: 0) {
-                Rectangle().fill(                LinearGradient(gradient: Gradient(colors: [Color("bgPurple"), .purple]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                Rectangle().fill(self.isNightMode ? Color(red: 39/255, green: 31/255, blue: 31/255) : Color("bgPurple"))
 
-                Rectangle().fill(Color.white)
+                Rectangle().fill(self.isNightMode ? Color(red: 64/255, green: 64/255, blue: 64/255) : Color.white)
             }
             
             
             VStack(spacing: 0) {
                 Spacer()
                 
-                MainStatusView(gr: gr, balance: $balance, income: $income, expense: $expense)
+                MainStatusView(gr: gr, balance: $balance, income: $income, expense: $expense, isNightMode: $isNightMode)
                     
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         
                         ForEach(recentTransactions, id: \.self){
                             item in
-                            ExpenseItem(gr: self.gr, date: item.date, note: item.note, amount: item.amount, isIncome: item.isIncome, category: item.category)
+                            ExpenseItem(gr: self.gr, date: item.date, note: item.note, amount: item.amount, isIncome: item.isIncome, category: item.category, isNightMode: self.$isNightMode)
                         }
                         
                     }.padding().padding(.bottom, gr.size.height*0.1)
@@ -80,7 +83,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { gr in
-            HomeView(gr: gr)
+            HomeView(gr: gr, isNightMode: .constant(false))
         }
         
     }

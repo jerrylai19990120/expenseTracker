@@ -10,13 +10,15 @@ import SwiftUI
 
 struct TabNavView: View {
     
+    @State var isNightMode = false
+    
     var body: some View {
         GeometryReader {
             gr in
             NavigationView {
                 TabView {
                     
-                    HomeView(gr: gr)
+                    HomeView(gr: gr, isNightMode: self.$isNightMode)
                         .tabItem {
                             VStack {
                                 Image(systemName: "house")
@@ -25,7 +27,7 @@ struct TabNavView: View {
                     }.navigationBarTitle("")
                         .navigationBarHidden(true)
                     
-                    HistoryView(gr: gr)
+                    HistoryView(gr: gr, isNightMode: self.$isNightMode)
                         .tabItem {
                             VStack {
                                 Image(systemName: "clock")
@@ -35,7 +37,7 @@ struct TabNavView: View {
                         .navigationBarHidden(true)
                     
                     
-                    ChartsView(gr: gr)
+                    ChartsView(gr: gr, isNightMode: self.$isNightMode)
                         .tabItem{
                             VStack {
                                 Image(systemName: "chart.pie")
@@ -44,7 +46,7 @@ struct TabNavView: View {
                     }.navigationBarTitle("")
                         .navigationBarHidden(true)
                     
-                    ProfileView(gr: gr)
+                    ProfileView(gr: gr, isNightMode: self.$isNightMode)
                         .tabItem {
                             VStack {
                                 Image(systemName: "person")
@@ -55,8 +57,14 @@ struct TabNavView: View {
                     
                     
                 }.onAppear(){
-                    UITabBar.appearance().backgroundColor = UIColor(red: 251/255, green: 253/255, blue: 1, alpha: 1)
-                }.accentColor(Color("bgPurple"))
+                    if self.isNightMode {
+                        UITabBar.appearance().barTintColor = UIColor.black
+                    } else {
+                        UITabBar.appearance().backgroundColor = UIColor.purple
+                        
+                    }
+                    
+                    }.accentColor(Color("bgPurple"))
             }
             
         }
