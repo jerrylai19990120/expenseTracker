@@ -114,7 +114,7 @@ struct SignUpPanel: View {
                 
                 VStack {
                     
-                    NavigationLink(destination: TabNavView(), isActive: $signUpSuccess){
+                    NavigationLink(destination: TabNavView().navigationBarTitle("").navigationBarHidden(true), isActive: $signUpSuccess){
                         Button(action: {
                             self.emailErr = ""
                             self.usernameErr = ""
